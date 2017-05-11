@@ -1,4 +1,4 @@
-/obj/screen/human
+**/obj/screen/human
 	icon = 'icons/mob/screen_midnight.dmi'
 
 /obj/screen/human/toggle
@@ -62,6 +62,27 @@
 /obj/screen/devil/soul_counter/proc/clear()
 	invisibility = INVISIBILITY_ABSTRACT
 
+obj/screen/dwarf
+	invisibility = INVISIBILITY_ABSTRACT
+
+/obj/screen/dwarf/alcohol_display
+	icon = 'icons/mob/screen_gen.dmi'
+	icon_state = "power_display2"
+	name = "alcohol stored"
+	screen_loc = ui_alcohol_amount
+
+/obj/screen/dwarf/alcohol_display/proc/update(mob/living/carbon/human/usr)
+	var/mob/living/carbon/human/H = usr
+	var/obj/item/organ/alcoholvessel/dwarf
+	dwarf = H.getorganslot("dwarf_organ")
+	if(dwarf)
+		invisibility  = 0
+		maptext = "<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='magenta'>[round(dwarf.stored_alcohol)]</font></div>"
+
+/obj/screen/dwarf/alcohol_display/proc/remove()
+	invisibility  = INVISIBILITY_ABSTRACT
+	maptext = null
+
 /obj/screen/ling
 	invisibility = INVISIBILITY_ABSTRACT
 
@@ -80,7 +101,11 @@
 	icon_state = "power_display"
 	screen_loc = ui_lingchemdisplay
 
-/datum/hud/human/New(mob/living/carbon/human/owner)
+/mob/living/carbon/human/create_mob_hud()
+	if(client && !hud_used)
+		hud_used = new /datum/hud/human(src, ui_style2icon(client.prefs.UI_style))
+
+/datum/hud/human/New(mob/living/carbon/human/owner, ui_style = 'icons/mob/screen_midnight.dmi')
 	..()
 	owner.overlay_fullscreen("see_through_darkness", /obj/screen/fullscreen/see_through_darkness)
 
@@ -301,6 +326,9 @@
 
 	devilsouldisplay = new /obj/screen/devil/soul_counter
 	infodisplay += devilsouldisplay
+
+	alcohol_amount = new /obj/screen/dwarf/alcohol_display()
+	infodisplay += alcohol_amount
 
 	zone_select =  new /obj/screen/zone_sel()
 	zone_select.icon = ui_style

@@ -175,6 +175,63 @@ GLOBAL_LIST_EMPTY(species_list)
 		else
 			return "unknown"
 
+/*
+Proc for attack log creation, because really why not
+1 argument is the actor
+2 argument is the target of action
+3 is the description of action(like punched, throwed, or any other verb)
+4 is the tool with which the action was made(usually item)					4 and 5 are very similar(5 have "by " before it, that it) and are separated just to keep things in a bit more in order
+5 is additional information, anything that needs to be added
+*/
+
+/proc/add_logs(mob/user, mob/target, what_done, object=null, addition=null)
+	var/turf/attack_location = get_turf(target)
+
+	var/is_mob_user = user && GLOB.typecache_mob[user.type]
+	var/is_mob_target = target && GLOB.typecache_mob[target.type]
+
+	var/mob/living/living_target
+
+	if(target && isliving(target))
+		living_target = target
+
+	var/hp =" "
+	if(living_target)
+		hp = "(NEWHP: [living_target.health])"
+
+	var/starget = "NON-EXISTENT SUBJECT"
+	if(target)
+		if(is_mob_target && target.ckey)
+			starget = "[target.name]([target.ckey])"
+		else
+			starget = "[target.name]"
+
+	var/ssource = "NON-EXISTENT USER" //How!?
+	if(user)
+		if(is_mob_user && user.ckey)
+			ssource = "[user.name]([user.ckey])"
+		else
+			ssource = "[user.name]"
+
+	var/sobject = ""
+	if(object)
+		sobject = "[object]"
+
+	var/sattackloc = ""
+	if(attack_location)
+		sattackloc = "([attack_location.x],[attack_location.y],[attack_location.z])"
+
+	if(is_mob_user)
+		var/message = "<font color='red'>has [what_done] [starget] with [sobject][addition] [hp] [sattackloc]</font>"
+		user.log_message(message, INDIVIDUAL_ATTACK_LOG)
+
+	if(is_mob_target)
+		var/message = "<font color='orange'>has been [what_done] by [ssource] with [sobject][addition] [hp] [sattackloc]</font>"
+		target.log_message(message, INDIVIDUAL_ATTACK_LOG)
+
+	log_attack("[ssource] [what_done] [starget] with [sobject][addition] [hp] [sattackloc]")
+
+
 /proc/do_mob(mob/user , mob/target, time = 30, uninterruptible = 0, progress = 1, datum/callback/extra_checks = null)
 	if(!user || !target)
 		return 0
