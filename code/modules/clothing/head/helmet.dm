@@ -295,6 +295,7 @@
 	armor = list("melee" = 30, "bullet" = 25, "laser" = 25, "energy" = 35, "bomb" = 20, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 30)
 	icon_state = "dwarven_helmet_greyscale"
 	item_state = "dwarven_helmet_greyscale"
+	material_flags = MATERIAL_ADD_PREFIX
 	custom_materials = list(/datum/material/iron = 10000)
 
 /obj/item/clothing/head/helmet/durathread
