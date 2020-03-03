@@ -332,7 +332,13 @@
 			icon_state = "[base_state]-burned"
 		if(LIGHT_BROKEN)
 			icon_state = "[base_state]-broken"
-	return
+
+/obj/machinery/light/update_icon()
+	. = ..()
+	if(on && status == LIGHT_OK)
+		var/mutable_appearance/glowybit = mutable_appearance(overlayicon, base_state, layer, EMISSIVE_PLANE)
+		glowybit.alpha = clamp(light_power*250, 30, 200)
+		. += glowybit
 
 // update the icon_state and luminosity of the light depending on its state
 /obj/machinery/light/proc/update(trigger = TRUE)
