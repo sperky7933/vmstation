@@ -1,4 +1,4 @@
-GLOBAL_LIST_INIT(bitfields, list(
+/GLOBAL_LIST_INIT(bitfields, list(
 	"appearance_flags" = list(
 		"LONG_GLIDE" = LONG_GLIDE,
 		"RESET_COLOR" = RESET_COLOR,
