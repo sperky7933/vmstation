@@ -110,6 +110,9 @@
 /datum/language_holder/swarmer
 	languages = list(/datum/language/swarmer)
 
+/datum/language_holder/uncommon
+	languages = list(/datum/language/uncommon)
+
 /datum/language_holder/clockmob
 	languages = list(/datum/language/common, /datum/language/ratvar)
 	only_speaks_language = /datum/language/ratvar
