@@ -121,7 +121,7 @@
 	languages = list(/datum/language/common, /datum/language/narsie)
 
 /datum/language_holder/drone
-	languages = list(/datum/language/common, /datum/language/drone, /datum/language/machine)
+	languages = list(/datum/language/common, /datum/language/drone, /datum/language/machine, /datum/language/uncommon)
 	only_speaks_language = /datum/language/drone
 
 /datum/language_holder/drone/syndicate
@@ -137,7 +137,7 @@
 
 /datum/language_holder/synthetic
 	languages = list(/datum/language/common)
-	shadow_languages = list(/datum/language/common, /datum/language/machine, /datum/language/draconic)
+	shadow_languages = list(/datum/language/common, /datum/language/machine, /datum/language/draconic, /datum/language/uncommon)
 
 /datum/language_holder/empty
 	languages = list()
