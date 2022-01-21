@@ -266,6 +266,9 @@
 	desc = "The lowest of the low when it comes to improvised firearms."
 	icon_state = "revolver"
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/improvised
+	w_class = WEIGHT_CLASS_BULKY
+	weapon_weight = WEAPON_MEDIUM
+	can_be_sawn_off = FALSE
 	fire_sound = 'sound/weapons/shotgunshot.ogg'
 	load_sound = 'sound/weapons/sawclose.ogg'
 	eject_sound = 'sound/weapons/sawopen.ogg'
@@ -277,6 +280,7 @@
 	bolt_type = BOLT_TYPE_NO_BOLT
 	tac_reloads = FALSE
 
-/obj/item/gun/ballistic/shotgun/doublebarrel/improvisedshotpistol/on_ranged_attack(atom/target)
-	to_chat(user, "<span class='warning'>The [src] breaks apart in your hands!</span>")
-	qdel(src) //Make it break on firing.
+/obj/item/gun/ballistic/shotgun/doublebarrel/improvisedshotpistol/shoot_live_shot(mob/living/user as mob|obj)
+	..()
+	to_chat(user, "<span class='italics'>The [src] falls apart!</span>")
+	//qdel(src) //Make it break on firing.
