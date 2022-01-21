@@ -265,9 +265,9 @@
 	name = "Improvised Shotgun Pistol"
 	desc = "The lowest of the low when it comes to improvised firearms."
 	icon_state = "ishotgunpistol"
-	item_state = "revolver"
+	item_state = "gun"
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/improvised
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_SMALL
 	weapon_weight = WEAPON_LIGHT
 	can_be_sawn_off = FALSE
 	fire_sound = 'sound/weapons/shotgunshot.ogg'

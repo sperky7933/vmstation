@@ -333,7 +333,7 @@
 				/obj/item/stack/sheet/metal = 2,
 				/obj/item/ammo_casing/shotgun/improvised = 1)
 	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
-	time = 100
+	time = 200
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
