@@ -263,7 +263,7 @@
 
 /obj/item/gun/ballistic/doublebarrel/ghettoshotgunpistol
 	name = "Improvised Shotgun Pistol"
-	desc = "The lowest of the low when it comes to improvised guns."
+	desc = "The lowest of the low when it comes to improvised firearms."
 	icon_state = "revolver"
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/improvised
 	fire_sound = 'sound/weapons/shotgunshot.ogg'
@@ -275,4 +275,4 @@
 	casing_ejector = FALSE
 	internal_magazine = TRUE
 	bolt_type = BOLT_TYPE_NO_BOLT
-	tac_reloads = FALSE
+	tac_reloads = FALSE // next Up, make it break on firing.
