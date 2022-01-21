@@ -280,7 +280,7 @@
 	bolt_type = BOLT_TYPE_NO_BOLT
 	tac_reloads = FALSE
 
-/obj/item/gun/ballistic/shotgun/doublebarrel/improvisedshotpistol/shoot_live_shot(mob/living/user as mob|obj)
+/obj/item/gun/ballistic/doublebarrel/improvisedshotpistol/shoot_live_shot(mob/living/user as mob|obj)
 	..()
 	to_chat(user, "<span class='italics'>The [src] falls apart!</span>")
-	//qdel(src) //Make it break on firing.
+	qdel(src) //Make it break on firing.
