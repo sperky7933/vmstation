@@ -261,7 +261,7 @@
 	else
 		return ..()
 
-/obj/item/gun/ballistic/doublebarrel/ghettoshotgunpistol
+/obj/item/gun/ballistic/doublebarrel/improvisedshotpistol
 	name = "Improvised Shotgun Pistol"
 	desc = "The lowest of the low when it comes to improvised firearms."
 	icon_state = "revolver"
@@ -275,4 +275,8 @@
 	casing_ejector = FALSE
 	internal_magazine = TRUE
 	bolt_type = BOLT_TYPE_NO_BOLT
-	tac_reloads = FALSE // next Up, make it break on firing.
+	tac_reloads = FALSE
+
+/obj/item/gun/ballistic/shotgun/doublebarrel/improvisedshotpistol/afterattack(atom/target, mob/living/user, flag, params)
+	//Make it break on firing.
+	loc = null
