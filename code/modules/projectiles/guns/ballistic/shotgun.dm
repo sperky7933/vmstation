@@ -277,6 +277,9 @@
 	bolt_type = BOLT_TYPE_NO_BOLT
 	tac_reloads = FALSE
 
-/obj/item/gun/ballistic/shotgun/doublebarrel/improvisedshotpistol/afterattack(atom/target, mob/living/user, flag, params)
+/obj/item/gun/ballistic/shotgun/doublebarrel/improvisedshotpistol/afterattack(atom/target, mob/user)
 	//Make it break on firing.
-	qdel(src)
+	if(TRUE)
+		to_chat(user, "<span class='warning'>None of [src] left, oh no!</span>")
+		qdel(src)
+		return FALSE
