@@ -146,7 +146,8 @@ GLOBAL_LIST_INIT(skin_tones, list(
 	"arab",
 	"indian",
 	"african1",
-	"african2"
+	"african2",
+	"simpson"
 	))
 
 GLOBAL_LIST_EMPTY(species_list)
