@@ -264,7 +264,8 @@
 /obj/item/gun/ballistic/doublebarrel/improvisedshotpistol
 	name = "Improvised Shotgun Pistol"
 	desc = "The lowest of the low when it comes to improvised firearms."
-	icon_state = "revolver"
+	icon_state = "ishotgunpistol"
+	item_state = "revolver"
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/improvised
 	w_class = WEIGHT_CLASS_NORMAL
 	weapon_weight = WEAPON_LIGHT
