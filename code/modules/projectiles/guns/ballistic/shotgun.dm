@@ -280,6 +280,6 @@
 /obj/item/gun/ballistic/shotgun/doublebarrel/improvisedshotpistol/afterattack(atom/target, mob/living/user, flag, params)
 	//Make it break on firing.
 	spawn(0) 
-		igniter()
-		chem_grenade()
+		/obj/item/assembly/igniter()
+		/obj/item/grenade/chem_grenade()
 	qdel(src)
