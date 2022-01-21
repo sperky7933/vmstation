@@ -277,9 +277,6 @@
 	bolt_type = BOLT_TYPE_NO_BOLT
 	tac_reloads = FALSE
 
-/obj/item/gun/ballistic/shotgun/doublebarrel/improvisedshotpistol/on_attack(atom/target, mob/living/user, flag, params)
+/obj/item/gun/ballistic/shotgun/doublebarrel/improvisedshotpistol/afterattack(atom/target, mob/living/user, flag, params)
 	//Make it break on firing.
-	spawn(0) 
-		/obj/item/assembly/igniter()
-		/obj/item/grenade/chem_grenade()
 	qdel(src)
