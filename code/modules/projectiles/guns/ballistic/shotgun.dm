@@ -266,8 +266,8 @@
 	desc = "The lowest of the low when it comes to improvised firearms."
 	icon_state = "revolver"
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/improvised
-	w_class = WEIGHT_CLASS_BULKY
-	weapon_weight = WEAPON_MEDIUM
+	w_class = WEIGHT_CLASS_NORMAL
+	weapon_weight = WEAPON_LIGHT
 	can_be_sawn_off = FALSE
 	fire_sound = 'sound/weapons/shotgunshot.ogg'
 	load_sound = 'sound/weapons/sawclose.ogg'
@@ -283,4 +283,8 @@
 /obj/item/gun/ballistic/doublebarrel/improvisedshotpistol/shoot_live_shot(mob/living/user as mob|obj)
 	..()
 	to_chat(user, "<span class='italics'>The [src] falls apart!</span>")
+	spawn(0)
+		/obj/item/assembly/igniter()
+		/obj/item/grenade/chem_grenade()
 	qdel(src) //Make it break on firing.
+	//also burn the player's hand and tell them so.
