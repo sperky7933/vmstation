@@ -1,179 +1,304 @@
-/proc/attempt_initiate_surgery(obj/item/I, mob/living/M, mob/user)
-	if(!istype(M))
-		return
 
-	var/mob/living/carbon/C
-	var/obj/item/bodypart/affecting
-	var/selected_zone = user.zone_selected
+/mob/living/proc/get_bodypart(zone)
+	return
 
-	if(iscarbon(M))
-		C = M
-		affecting = C.get_bodypart(check_zone(selected_zone))
+/mob/living/carbon/get_bodypart(zone)
+	if(!zone)
+		zone = BODY_ZONE_CHEST
+	for(var/X in bodyparts)
+		var/obj/item/bodypart/L = X
+		if(L.body_zone == zone)
+			return L
 
-	var/datum/surgery/current_surgery
+/mob/living/carbon/has_hand_for_held_index(i)
+	if(i)
+		var/obj/item/bodypart/L = hand_bodyparts[i]
+		if(L && !L.disabled)
+			return L
+	return FALSE
 
-	for(var/datum/surgery/S in M.surgeries)
-		if(S.location == selected_zone)
-			current_surgery = S
 
-	if(!current_surgery)
-		var/list/all_surgeries = GLOB.surgeries_list.Copy()
-		var/list/available_surgeries = list()
 
-		for(var/datum/surgery/S in all_surgeries)
-			if(!S.possible_locs.Find(selected_zone))
-				continue
-			if(affecting)
-				if(!S.requires_bodypart)
-					continue
-				if(S.requires_bodypart_type && affecting.status != S.requires_bodypart_type)
-					continue
-				if(S.requires_real_bodypart && affecting.is_pseudopart)
-					continue
-			else if(C && S.requires_bodypart) //mob with no limb in surgery zone when we need a limb
-				continue
-			if(S.lying_required && (M.mobility_flags & MOBILITY_STAND))
-				continue
-			if(!S.can_start(user, M))
-				continue
-			for(var/path in S.target_mobtypes)
-				if(istype(M, path))
-					available_surgeries[S.name] = S
-					break
 
-		if(!available_surgeries.len)
-			return
+/mob/proc/has_left_hand(check_disabled = TRUE)
+	return TRUE
 
-		var/P = input("Begin which procedure?", "Surgery", null, null) as null|anything in available_surgeries
-		if(P && user && user.Adjacent(M) && (I in user))
-			var/datum/surgery/S = available_surgeries[P]
+/mob/living/carbon/has_left_hand(check_disabled = TRUE)
+	for(var/obj/item/bodypart/L in hand_bodyparts)
+		if(L.held_index % 2)
+			if(!check_disabled || !L.disabled)
+				return TRUE
+	return FALSE
 
-			for(var/datum/surgery/other in M.surgeries)
-				if(other.location == S.location)
-					return //during the input() another surgery was started at the same location.
-
-			//we check that the surgery is still doable after the input() wait.
-			if(C)
-				affecting = C.get_bodypart(check_zone(selected_zone))
-			if(affecting)
-				if(!S.requires_bodypart)
-					return
-				if(S.requires_bodypart_type && affecting.status != S.requires_bodypart_type)
-					return
-			else if(C && S.requires_bodypart)
-				return
-			if(S.lying_required && (M.mobility_flags & MOBILITY_STAND))
-				return
-			if(!S.can_start(user, M))
-				return
-
-			if(S.ignore_clothes || get_location_accessible(M, selected_zone))
-				var/datum/surgery/procedure = new S.type(M, selected_zone, affecting)
-				user.visible_message("[user] drapes [I] over [M]'s [parse_zone(selected_zone)] to prepare for surgery.", \
-					"<span class='notice'>You drape [I] over [M]'s [parse_zone(selected_zone)] to prepare for \an [procedure.name].</span>")
-
-				log_combat(user, M, "operated on", null, "(OPERATION TYPE: [procedure.name]) (TARGET AREA: [selected_zone])")
-			else
-				to_chat(user, "<span class='warning'>You need to expose [M]'s [parse_zone(selected_zone)] first!</span>")
-
-	else if(!current_surgery.step_in_progress)
-		attempt_cancel_surgery(current_surgery, I, M, user)
-
+/mob/living/carbon/alien/larva/has_left_hand()
 	return 1
 
-/proc/attempt_cancel_surgery(datum/surgery/S, obj/item/I, mob/living/M, mob/user)
-	var/selected_zone = user.zone_selected
-	if(S.status == 1)
-		M.surgeries -= S
-		user.visible_message("[user] removes [I] from [M]'s [parse_zone(selected_zone)].", \
-			"<span class='notice'>You remove [I] from [M]'s [parse_zone(selected_zone)].</span>")
-		qdel(S)
-	else if(S.can_cancel)
-		var/close_tool_type = /obj/item/cautery
-		var/obj/item/close_tool = user.get_inactive_held_item()
-		var/is_robotic = S.requires_bodypart_type == BODYPART_ROBOTIC
-		if(is_robotic)
-			close_tool_type = /obj/item/screwdriver
-		if(istype(close_tool, close_tool_type) || iscyborg(user))
-			if (ishuman(M))
-				var/mob/living/carbon/human/H = M
-				H.bleed_rate = max( (H.bleed_rate - 3), 0)
-			M.surgeries -= S
-			user.visible_message("[user] closes [M]'s [parse_zone(selected_zone)] with [close_tool] and removes [I].", \
-				"<span class='notice'>You close [M]'s [parse_zone(selected_zone)] with [close_tool] and remove [I].</span>")
-			qdel(S)
-		else
-			to_chat(user, "<span class='warning'>You need to hold a [is_robotic ? "screwdriver" : "cautery"] in your inactive hand to stop [M]'s surgery!</span>")
 
-/proc/get_location_modifier(mob/M)
-	var/turf/T = get_turf(M)
-	if(locate(/obj/structure/table/optable, T))
-		return 1
-	else if(locate(/obj/structure/table, T))
-		return 0.8
-	else if(locate(/obj/structure/bed, T))
-		return 0.7
-	else
-		return 0.5
+/mob/proc/has_right_hand(check_disabled = TRUE)
+	return TRUE
+
+/mob/living/carbon/has_right_hand(check_disabled = TRUE)
+	for(var/obj/item/bodypart/L in hand_bodyparts)
+		if(!(L.held_index % 2))
+			if(!check_disabled || !L.disabled)
+				return TRUE
+	return FALSE
+
+/mob/living/carbon/alien/larva/has_right_hand()
+	return 1
 
 
-/proc/get_location_accessible(mob/M, location)
-	var/covered_locations = 0	//based on body_parts_covered
-	var/face_covered = 0	//based on flags_inv
-	var/eyesmouth_covered = 0	//based on flags_cover
-	if(iscarbon(M))
-		var/mob/living/carbon/C = M
-		for(var/obj/item/clothing/I in list(C.back, C.wear_mask, C.head))
-			covered_locations |= I.body_parts_covered
-			face_covered |= I.flags_inv
-			eyesmouth_covered |= I.flags_cover
-		if(ishuman(C))
-			var/mob/living/carbon/human/H = C
-			for(var/obj/item/I in list(H.wear_suit, H.w_uniform, H.shoes, H.belt, H.gloves, H.glasses, H.ears))
-				covered_locations |= I.body_parts_covered
-				face_covered |= I.flags_inv
-				eyesmouth_covered |= I.flags_cover
 
-	switch(location)
-		if(BODY_ZONE_HEAD)
-			if(covered_locations & HEAD)
-				return 0
-		if(BODY_ZONE_PRECISE_EYES)
-			if(covered_locations & HEAD || face_covered & HIDEEYES || eyesmouth_covered & GLASSESCOVERSEYES)
-				return 0
-		if(BODY_ZONE_PRECISE_MOUTH)
-			if(covered_locations & HEAD || face_covered & HIDEFACE || eyesmouth_covered & MASKCOVERSMOUTH || eyesmouth_covered & HEADCOVERSMOUTH)
-				return 0
-		if(BODY_ZONE_CHEST)
-			if(covered_locations & CHEST)
-				return 0
-		if(BODY_ZONE_PRECISE_GROIN)
-			if(covered_locations & GROIN)
-				return 0
+//Limb numbers
+/mob/proc/get_num_arms(check_disabled = TRUE)
+	return 2
+
+/mob/living/carbon/get_num_arms(check_disabled = TRUE)
+	. = 0
+	for(var/X in bodyparts)
+		var/obj/item/bodypart/affecting = X
+		if(affecting.body_part == ARM_RIGHT)
+			if(!check_disabled || !affecting.disabled)
+				.++
+		if(affecting.body_part == ARM_LEFT)
+			if(!check_disabled || !affecting.disabled)
+				.++
+
+
+//sometimes we want to ignore that we don't have the required amount of arms.
+/mob/proc/get_arm_ignore()
+	return 0
+
+/mob/living/carbon/alien/larva/get_arm_ignore()
+	return 1 //so we can still handcuff larvas.
+
+
+/mob/proc/get_num_legs(check_disabled = TRUE)
+	return 2
+
+/mob/living/carbon/get_num_legs(check_disabled = TRUE)
+	. = 0
+	for(var/X in bodyparts)
+		var/obj/item/bodypart/affecting = X
+		if(affecting.body_part == LEG_RIGHT)
+			if(!check_disabled || !affecting.disabled)
+				.++
+		if(affecting.body_part == LEG_LEFT)
+			if(!check_disabled || !affecting.disabled)
+				.++
+
+//sometimes we want to ignore that we don't have the required amount of legs.
+/mob/proc/get_leg_ignore()
+	return FALSE
+
+/mob/living/carbon/alien/larva/get_leg_ignore()
+	return TRUE
+
+/mob/living/carbon/human/get_leg_ignore()
+	if(movement_type & (FLYING | FLOATING))
+		return TRUE
+	return FALSE
+
+/mob/living/proc/get_missing_limbs()
+	return list()
+
+/mob/living/carbon/get_missing_limbs()
+	var/list/full = list(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG)
+	for(var/zone in full)
+		if(get_bodypart(zone))
+			full -= zone
+	return full
+
+/mob/living/carbon/alien/larva/get_missing_limbs()
+	var/list/full = list(BODY_ZONE_HEAD, BODY_ZONE_CHEST)
+	for(var/zone in full)
+		if(get_bodypart(zone))
+			full -= zone
+	return full
+
+/mob/living/proc/get_disabled_limbs()
+	return list()
+
+/mob/living/carbon/get_disabled_limbs()
+	var/list/full = list(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG)
+	var/list/disabled = list()
+	for(var/zone in full)
+		var/obj/item/bodypart/affecting = get_bodypart(zone)
+		if(affecting && affecting.disabled)
+			disabled += zone
+	return disabled
+
+/mob/living/carbon/alien/larva/get_disabled_limbs()
+	var/list/full = list(BODY_ZONE_HEAD, BODY_ZONE_CHEST)
+	var/list/disabled = list()
+	for(var/zone in full)
+		var/obj/item/bodypart/affecting = get_bodypart(zone)
+		if(affecting && affecting.disabled)
+			disabled += zone
+	return disabled
+
+//Remove all embedded objects from all limbs on the carbon mob
+/mob/living/carbon/proc/remove_all_embedded_objects()
+	var/turf/T = get_turf(src)
+
+	for(var/X in bodyparts)
+		var/obj/item/bodypart/L = X
+		for(var/obj/item/I in L.embedded_objects)
+			L.embedded_objects -= I
+			I.forceMove(T)
+
+	clear_alert("embeddedobject")
+	SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "embedded")
+
+/mob/living/carbon/proc/has_embedded_objects()
+	. = 0
+	for(var/X in bodyparts)
+		var/obj/item/bodypart/L = X
+		for(var/obj/item/I in L.embedded_objects)
+			return 1
+
+
+//Helper for quickly creating a new limb - used by augment code in species.dm spec_attacked_by
+/mob/living/carbon/proc/newBodyPart(zone, robotic, fixed_icon)
+	var/obj/item/bodypart/L
+	switch(zone)
 		if(BODY_ZONE_L_ARM)
-			if(covered_locations & ARM_LEFT)
-				return 0
+			L = new /obj/item/bodypart/l_arm()
 		if(BODY_ZONE_R_ARM)
-			if(covered_locations & ARM_RIGHT)
-				return 0
+			L = new /obj/item/bodypart/r_arm()
+		if(BODY_ZONE_HEAD)
+			L = new /obj/item/bodypart/head()
 		if(BODY_ZONE_L_LEG)
-			if(covered_locations & LEG_LEFT)
-				return 0
+			L = new /obj/item/bodypart/l_leg()
 		if(BODY_ZONE_R_LEG)
-			if(covered_locations & LEG_RIGHT)
-				return 0
-		if(BODY_ZONE_PRECISE_L_HAND)
-			if(covered_locations & HAND_LEFT)
-				return 0
-		if(BODY_ZONE_PRECISE_R_HAND)
-			if(covered_locations & HAND_RIGHT)
-				return 0
-		if(BODY_ZONE_PRECISE_L_FOOT)
-			if(covered_locations & FOOT_LEFT)
-				return 0
-		if(BODY_ZONE_PRECISE_R_FOOT)
-			if(covered_locations & FOOT_RIGHT)
-				return 0
+			L = new /obj/item/bodypart/r_leg()
+		if(BODY_ZONE_CHEST)
+			L = new /obj/item/bodypart/chest()
+	if(L)
+		L.update_limb(fixed_icon, src)
+		if(robotic)
+			L.change_bodypart_status(BODYPART_ROBOTIC)
+	. = L
 
-	return 1
+/mob/living/carbon/monkey/newBodyPart(zone, robotic, fixed_icon)
+	var/obj/item/bodypart/L
+	switch(zone)
+		if(BODY_ZONE_L_ARM)
+			L = new /obj/item/bodypart/l_arm/monkey()
+		if(BODY_ZONE_R_ARM)
+			L = new /obj/item/bodypart/r_arm/monkey()
+		if(BODY_ZONE_HEAD)
+			L = new /obj/item/bodypart/head/monkey()
+		if(BODY_ZONE_L_LEG)
+			L = new /obj/item/bodypart/l_leg/monkey()
+		if(BODY_ZONE_R_LEG)
+			L = new /obj/item/bodypart/r_leg/monkey()
+		if(BODY_ZONE_CHEST)
+			L = new /obj/item/bodypart/chest/monkey()
+	if(L)
+		L.update_limb(fixed_icon, src)
+		if(robotic)
+			L.change_bodypart_status(BODYPART_ROBOTIC)
+	. = L
 
+/mob/living/carbon/alien/larva/newBodyPart(zone, robotic, fixed_icon)
+	var/obj/item/bodypart/L
+	switch(zone)
+		if(BODY_ZONE_HEAD)
+			L = new /obj/item/bodypart/head/larva()
+		if(BODY_ZONE_CHEST)
+			L = new /obj/item/bodypart/chest/larva()
+	if(L)
+		L.update_limb(fixed_icon, src)
+		if(robotic)
+			L.change_bodypart_status(BODYPART_ROBOTIC)
+	. = L
+
+/mob/living/carbon/alien/humanoid/newBodyPart(zone, robotic, fixed_icon)
+	var/obj/item/bodypart/L
+	switch(zone)
+		if(BODY_ZONE_L_ARM)
+			L = new /obj/item/bodypart/l_arm/alien()
+		if(BODY_ZONE_R_ARM)
+			L = new /obj/item/bodypart/r_arm/alien()
+		if(BODY_ZONE_HEAD)
+			L = new /obj/item/bodypart/head/alien()
+		if(BODY_ZONE_L_LEG)
+			L = new /obj/item/bodypart/l_leg/alien()
+		if(BODY_ZONE_R_LEG)
+			L = new /obj/item/bodypart/r_leg/alien()
+		if(BODY_ZONE_CHEST)
+			L = new /obj/item/bodypart/chest/alien()
+	if(L)
+		L.update_limb(fixed_icon, src)
+		if(robotic)
+			L.change_bodypart_status(BODYPART_ROBOTIC)
+	. = L
+
+
+/proc/skintone2hex(skin_tone)
+	. = 0
+	switch(skin_tone)
+		if("caucasian1")
+			. = "ffe0d1"
+		if("caucasian2")
+			. = "fcccb3"
+		if("caucasian3")
+			. = "e8b59b"
+		if("latino")
+			. = "d9ae96"
+		if("mediterranean")
+			. = "c79b8b"
+		if("asian1")
+			. = "ffdeb3"
+		if("asian2")
+			. = "e3ba84"
+		if("arab")
+			. = "c4915e"
+		if("indian")
+			. = "b87840"
+		if("african1")
+			. = "754523"
+		if("african2")
+			. = "471c18"
+		if("albino")
+			. = "fff4e6"
+		if("simpson")
+			. = "fed90f"
+		if("orange")
+			. = "ffc905"
+
+/mob/living/carbon/proc/Digitigrade_Leg_Swap(swap_back)
+	var/body_plan_changed = FALSE
+	for(var/X in bodyparts)
+		var/obj/item/bodypart/O = X
+		var/obj/item/bodypart/N
+		if((!O.use_digitigrade && swap_back == FALSE) || (O.use_digitigrade && swap_back == TRUE))
+			if(O.body_part == LEG_LEFT)
+				if(swap_back == TRUE)
+					N = new /obj/item/bodypart/l_leg
+				else
+					N = new /obj/item/bodypart/l_leg/digitigrade
+			else if(O.body_part == LEG_RIGHT)
+				if(swap_back == TRUE)
+					N = new /obj/item/bodypart/r_leg
+				else
+					N = new /obj/item/bodypart/r_leg/digitigrade
+		if(!N)
+			continue
+		body_plan_changed = TRUE
+		O.drop_limb(1)
+		qdel(O)
+		N.attach_limb(src)
+	if(body_plan_changed && ishuman(src))
+		var/mob/living/carbon/human/H = src
+		if(H.w_uniform)
+			var/obj/item/clothing/under/U = H.w_uniform
+			if(U.mutantrace_variation)
+				if(swap_back)
+					U.adjusted = NORMAL_STYLE
+				else
+					U.adjusted = DIGITIGRADE_STYLE
+				H.update_inv_w_uniform()
+		if(H.shoes && !swap_back)
+			H.dropItemToGround(H.shoes)
