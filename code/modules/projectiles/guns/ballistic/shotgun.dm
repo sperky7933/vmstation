@@ -260,3 +260,21 @@
 		hook.afterattack(target, user, flag, params)
 	else
 		return ..()
+
+/obj/item/gun/ballistic/doublebarrel/ghettoshotgunpistol
+	name = "\improper .357 revolver"
+	desc = "A suspicious revolver. Uses .357 ammo." //usually used by syndicates
+	icon_state = "revolver"
+	mag_type = /obj/item/ammo_box/magazine/internal/shot/improvised
+	fire_sound = 'sound/weapons/revolver357shot.ogg'
+	load_sound = 'sound/weapons/revolverload.ogg'
+	eject_sound = 'sound/weapons/revolverempty.ogg'
+	vary_fire_sound = FALSE
+	fire_sound_volume = 90
+	dry_fire_sound = 'sound/weapons/revolverdry.ogg'
+	casing_ejector = FALSE
+	internal_magazine = TRUE
+	bolt_type = BOLT_TYPE_NO_BOLT
+	tac_reloads = FALSE
+	var/spin_delay = 10
+	var/recent_spin = 0
