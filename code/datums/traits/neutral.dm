@@ -10,6 +10,26 @@
 	lose_text = "<span class='notice'>You can taste again!</span>"
 	medical_record_text = "Patient suffers from ageusia and is incapable of tasting food or reagents."
 
+/datum/quirk/immigrant_illegal
+	name = "Illegal Immigrant"
+	desc = "You're an illegal immigrant from somewhere else. You don't speak Galactic Common."
+	value = 0
+	gain_text = "<span class='notice'>The words being spoken around you don't make any sense."
+	lose_text = "<span class='notice'>You've developed fluency in Galactic Common."
+	medical_record_text = "Patient does not speak Galactic Common and may require an interpreter."
+
+/datum/quirk/immigrant_illegal/add()
+	var/mob/living/carbon/human/H = quirk_holder
+	H.remove_language(/datum/language/common)
+	if(ishuman(H))
+		H.grant_language(/datum/language/uncommon)
+
+/datum/quirk/immigrant_illegal/remove()
+	var/mob/living/carbon/human/H = quirk_holder
+	H.grant_language(/datum/language/common)
+	if(ishuman(H))
+		H.remove_language(/datum/language/uncommon)
+
 /datum/quirk/vegetarian
 	name = "Vegetarian"
 	desc = "You find the idea of eating meat morally and physically repulsive."
