@@ -263,6 +263,8 @@
 			. = "471c18"
 		if("albino")
 			. = "fff4e6"
+		if("simpson")
+			. = "fed90f"
 		if("orange")
 			. = "ffc905"
 
