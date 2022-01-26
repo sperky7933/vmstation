@@ -226,6 +226,7 @@ CREATE TABLE `SS13_library` (
   `datetime` datetime NOT NULL,
   `deleted` tinyint(1) unsigned DEFAULT NULL,
   `round_id_created` int(11) unsigned NOT NULL,
+  `deleted_ckey` VARCHAR(32) NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `deleted_idx` (`deleted`),
   KEY `idx_lib_id_del` (`id`,`deleted`),
