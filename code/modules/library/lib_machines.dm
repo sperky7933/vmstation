@@ -26,6 +26,7 @@
 	var/category = "Any"
 	var/author
 	var/search_page = 0
+	clockwork = TRUE //it'd look weird
 
 /obj/machinery/computer/libraryconsole/ui_interact(mob/user)
 	. = ..()
@@ -513,7 +514,8 @@ GLOBAL_LIST(cachedbooks) // List of our cached book datums
 					B.author = author
 					B.dat = content
 					B.icon_state = "book[rand(1,8)]"
-					visible_message("[src]'s printer hums as it produces a completely bound book. How did it do that?")				break
+					visible_message("[src]'s printer hums as it produces a completely bound book. How did it do that?")
+				break
 			qdel(query_library_print)
 	if(href_list["printbible"])
 		if(cooldown < world.time)
@@ -613,7 +615,7 @@ GLOBAL_LIST(cachedbooks) // List of our cached book datums
 		return ..()
 
 /obj/machinery/bookbinder/proc/bind_book(mob/user, obj/item/paper/P)
-	if(machine_stat)
+	if(stat)
 		return
 	if(busy)
 		to_chat(user, "<span class='warning'>The book binder is busy. Please wait for completion of previous operation.</span>")
@@ -626,7 +628,7 @@ GLOBAL_LIST(cachedbooks) // List of our cached book datums
 	sleep(rand(200,400))
 	busy = FALSE
 	if(P)
-		if(!machine_stat)
+		if(!stat)
 			visible_message("[src] whirs as it prints and binds a new book.")
 			var/obj/item/book/B = new(src.loc)
 			B.dat = P.info

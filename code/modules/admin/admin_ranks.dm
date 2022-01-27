@@ -118,7 +118,7 @@ GLOBAL_PROTECT(protected_ranks)
 
 	var/list/sql_ranks = list()
 	for(var/datum/admin_rank/R in GLOB.protected_ranks)
-	 		sql_ranks += list(list("rank" = R.name, "flags" = R.include_rights, "exclude_flags" = R.exclude_rights, "can_edit_flags" = R.can_edit_rights))
+		sql_ranks += list(list("rank" = R.name, "flags" = R.include_rights, "exclude_flags" = R.exclude_rights, "can_edit_flags" = R.can_edit_rights))
 	SSdbcore.MassInsert(format_table_name("admin_ranks"), sql_ranks, duplicate_key = TRUE)
 
 //load our rank - > rights associations
