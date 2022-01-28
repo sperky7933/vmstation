@@ -59,4 +59,7 @@
 						"<span class='userdanger'>You slide on [A]!</span>")
 
 			cooldown = world.time
-		H.Paralyze(60)
+		if(H.dna.species.id == "squid")
+			H.Paralyze(90)
+
+		else H.Paralyze(60)
