@@ -8,7 +8,7 @@
     use_skintones = 0
     no_equip = list(SLOT_SHOES)
     skinned_type = /obj/item/stack/sheet/animalhide/human
-	special_step_sounds = list('sound/effects/squidwalk1.ogg', 'sound/effects/squidwalk2.ogg')
+	special_step_sounds = list('sound/effects/squidwalk1.ogg', 'sound/effects/squidwalk2.ogg' )
     disliked_food = FRIED
 //	nojumpsuit = TRUE
 
