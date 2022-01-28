@@ -8,7 +8,6 @@
 	var/name_type = "station"
 
 	var/unlimited_uses = FALSE
-	var/ignores_timeout = FALSE
 	var/response_timer_id = null
 	var/approval_time = 600
 
@@ -83,11 +82,6 @@
 	SSblackbox.record_feedback("text", "station_renames", 1, "[station_name()]")
 	if(!unlimited_uses)
 		used = TRUE
-
-/obj/item/station_charter/admin
-	unlimited_uses = TRUE
-	ignores_timeout = TRUE
-
 
 /obj/item/station_charter/flag
 	name = "nanotrasen banner"
