@@ -3,6 +3,7 @@
     id = "squid"
     default_color = "b8dfda"
     species_traits = list(MUTCOLORS,EYECOLOR,TRAIT_NOSLIPWATER)
+    inherent_traits = list(TRAIT_NOSLIPWATER)
     default_features = list("mcolor" = "FFF") // bald
     changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | SLIME_EXTRACT
     use_skintones = 0
