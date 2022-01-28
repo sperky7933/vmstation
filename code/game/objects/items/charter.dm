@@ -7,7 +7,6 @@
 	var/used = FALSE
 	var/name_type = "station"
 
-	var/unlimited_uses = FALSE
 	var/response_timer_id = null
 	var/approval_time = 600
 
@@ -80,8 +79,7 @@
 	desc = "An official document entrusting the governance of \
 		[station_name()] and surrounding space to Captain [uname]."
 	SSblackbox.record_feedback("text", "station_renames", 1, "[station_name()]")
-	if(!unlimited_uses)
-		used = TRUE
+	used = TRUE
 
 /obj/item/station_charter/flag
 	name = "nanotrasen banner"
@@ -102,5 +100,4 @@
 	name = "banner of [station_name()]"
 	desc = "The banner bears the official coat of arms of Nanotrasen, signifying that [station_name()] has been claimed by Captain [uname] in the name of the company."
 	SSblackbox.record_feedback("text", "station_renames", 1, "[station_name()]")
-	if(!unlimited_uses)
-		used = TRUE
+	used = TRUE
