@@ -1,5 +1,3 @@
-#define STATION_RENAME_TIME_LIMIT 3000
-
 /obj/item/station_charter
 	name = "station charter"
 	icon = 'icons/obj/wizard.dmi'
@@ -29,9 +27,6 @@
 /obj/item/station_charter/attack_self(mob/living/user)
 	if(used)
 		to_chat(user, "The [name_type] has already been named.")
-		return
-	if(!ignores_timeout && (world.time-SSticker.round_start_time > STATION_RENAME_TIME_LIMIT)) //5 minutes
-		to_chat(user, "The crew has already settled into the shift. It probably wouldn't be good to rename the [name_type] right now.")
 		return
 	if(response_timer_id)
 		to_chat(user, "You're still waiting for approval from your employers about your proposed name change, it'd be best to wait for now.")
@@ -115,5 +110,3 @@
 	SSblackbox.record_feedback("text", "station_renames", 1, "[station_name()]")
 	if(!unlimited_uses)
 		used = TRUE
-
-#undef STATION_RENAME_TIME_LIMIT
