@@ -25,6 +25,7 @@
 	var/body_color //brown, gray and white, leave blank for random
 	gold_core_spawnable = FRIENDLY_SPAWN
 	var/chew_probability = 1
+	var/min_players = 15 //minimum players required for mouse to eat cables
 
 /mob/living/simple_animal/mouse/Initialize()
 	. = ..()
@@ -63,7 +64,7 @@
 	..()
 
 /mob/living/simple_animal/mouse/handle_automated_action()
-	if(prob(chew_probability))
+	if(prob(chew_probability) && GLOB.joined_player_list.len >= min_players)
 		var/turf/open/floor/F = get_turf(src)
 		if(istype(F) && !F.intact)
 			var/obj/structure/cable/C = locate() in F
