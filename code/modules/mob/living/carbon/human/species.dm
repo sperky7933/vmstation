@@ -1102,7 +1102,6 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	. = 0	//We start at 0.
 	var/flight = 0	//Check for flight and flying items
 	var/flightpack = 0
-	var/ignoreslow = 0
 	var/gravity = 0
 	var/obj/item/flightpack/F = H.get_flightpack()
 	if(istype(F) && F.flight)
@@ -1117,7 +1116,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	else if(flightpack && F.brake)
 		. += 1
 
-	if(!HAS_TRAIT(H, TRAIT_IGNORESLOWDOWN) !flightpack && gravity)
+	if(!HAS_TRAIT(H, TRAIT_IGNORESLOWDOWN) && !flightpack && gravity)
 		if(H.wear_suit)
 			. += H.wear_suit.slowdown
 		if(H.shoes)

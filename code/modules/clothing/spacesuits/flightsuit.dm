@@ -98,19 +98,18 @@
 
 	var/atom/movable/cached_pull		//recipe for disaster again.
 	var/afterForceMove = FALSE
-	var/datum/component/mobhook
 
 /obj/item/flightpack/proc/changeWearer(mob/changeto)
 	if(wearer)
 		LAZYREMOVE(wearer.user_movement_hooks, src)
+	UnregisterSignal(wearer, COMSIG_MOVABLE_MOVED)
 	wearer = null
-	QDEL_NULL(mobhook)
 	cached_pull = null
 	if(istype(changeto))
 		wearer = changeto
 		LAZYADD(wearer.user_movement_hooks, src)
 		cached_pull = changeto.pulling
-		mobhook = changeto.AddComponent(/datum/component/redirect, list(COMSIG_MOVABLE_MOVED), CALLBACK(src, .proc/on_mob_move, changeto))
+		RegisterSignal(wearer, COMSIG_MOVABLE_MOVED, .proc/on_mob_move)
 
 /obj/item/flightpack/Initialize()
 	ion_trail = new
@@ -184,7 +183,6 @@
 	QDEL_NULL(part_laser)
 	QDEL_NULL(part_bin)
 	QDEL_NULL(ion_trail)
-	QDEL_NULL(mobhook)
 	STOP_PROCESSING(SSflightpacks, src)
 	. = ..()
 
@@ -216,7 +214,7 @@
 /obj/item/flightpack/proc/momentum_drift()
 	if(!flight || !wearer || (momentum_speed == 0))
 		return FALSE
-	else if(!wearer.canmove)
+	else if(wearer.incapacitated())
 		losecontrol()
 	var/drift_dir_x = 0
 	var/drift_dir_y = 0
@@ -897,7 +895,7 @@
 			usermessage("You're already wearing something on your back!", "boldwarning")
 			return FALSE
 		user.equip_to_slot_if_possible(pack,SLOT_BACK,0,0,1)
-		pack.item_flags |= NODROP
+		ADD_TRAIT(pack, TRAIT_NODROP, FLIGHTPACK_TRAIT)
 		resync()
 		user.visible_message("<span class='notice'>A [pack.name] extends from [user]'s [name] and clamps to [user.p_their()] back!</span>")
 		user.update_inv_wear_suit()
@@ -911,7 +909,7 @@
 			return FALSE
 		if(pack.flight && forced)
 			pack.disable_flight(1)
-		pack.item_flags &= ~NODROP
+		REMOVE_TRAIT(pack, TRAIT_NODROP, FLIGHTPACK_TRAIT)
 		resync()
 		if(user)
 			user.transferItemToLoc(pack, src, TRUE)
@@ -935,14 +933,14 @@
 			usermessage("You're already wearing something on your feet!", "boldwarning")
 			return FALSE
 		user.equip_to_slot_if_possible(shoes,SLOT_SHOES,0,0,1)
-		shoes.item_flags |= NODROP
+		ADD_TRAIT(shoes, TRAIT_NODROP, FLIGHTSHOES_TRAIT)
 		user.visible_message("<span class='notice'>[user]'s [name] extends a pair of [shoes.name] over [user.p_their()] feet!</span>")
 		user.update_inv_wear_suit()
 	playsound(src.loc, 'sound/mecha/mechmove03.ogg', 50, 1)
 	deployedshoes = TRUE
 
 /obj/item/clothing/suit/space/hardsuit/flightsuit/proc/retract_flightshoes(forced = FALSE)
-	shoes.item_flags &= ~NODROP
+	REMOVE_TRAIT(shoes, TRAIT_NODROP, FLIGHTSHOES_TRAIT)
 	playsound(src, 'sound/mecha/mechmove03.ogg', 50, 1)
 	if(user)
 		user.transferItemToLoc(shoes, src, TRUE)
