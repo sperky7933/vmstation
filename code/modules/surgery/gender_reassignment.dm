@@ -7,7 +7,6 @@
 		/datum/surgery_step/close)
 	possible_locs = list(BODY_ZONE_PRECISE_GROIN)
 
-//reshape_genitals
 /datum/surgery_step/reshape_genitals
 	name = "reshape genitals"
 	implements = list(/obj/item/scalpel = 100, /obj/item/hatchet = 50, /obj/item/wirecutters = 35)
@@ -16,7 +15,6 @@
 	var/list/gender_list = list("Male", "Female", "Plural")
 
 /datum/surgery_step/reshape_genitals/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	//here: choose target.gender
 	chosen_gender = input(user, "Which gender?") as null|anything in gender_list
 
 	if(!chosen_gender)
@@ -42,12 +40,12 @@
 		user.visible_message("[user] has made a man of [target]!", "<span class='notice'>You made [target] a man.</span>")
 		target.gender = MALE
 
-	if(chosen_gender == "Female")
+	else if(chosen_gender == "Female")
 		user.visible_message("[user] has made a woman of [target]!", "<span class='notice'>You made [target] a woman.</span>")
 		target.gender = FEMALE
 
-	if(chosen_gender == "Plural")
-		user.visible_message("[user] has made [target] transgender!", "<span class='notice'>You made [target] transgender.</span>")
+	else
+		user.visible_message("[user] has removed [target]'s' genitals!", "<span class='notice'>You removed [target]'s' genitals.</span>")
 		target.gender = PLURAL
 
 	return 1
