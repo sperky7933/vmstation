@@ -14,13 +14,11 @@ Option 1:
 Follow this: https://www.tgstation13.org/wiki/Setting_up_git
 
 Option 2: Download the source code as a zip by clicking the ZIP button in the
-code tab of https://github.com/tgstation/tgstation
+code tab of https://github.com/not-a-furry/vmstation
 (note: this will use a lot of bandwidth if you wish to update and is a lot of
 hassle if you want to make any changes at all, so it's not recommended.)
 
-Option 3: Download a pre-compiled nightly at https://tgstation13.download/nightlies/ (same caveats as option 2)
-
-Option 4: Use our docker image that tracks the master branch (See commits for build status. Again, same caveats as option 2)
+Option 3: Use our docker image that tracks the master branch (See commits for build status. Again, same caveats as option 2)
 
 ```
 docker run -d -p <your port>:1337 -v /path/to/your/config:/tgstation/config -v /path/to/your/data:/tgstation/data tgstation/tgstation <dream daemon options i.e. -public or -params>
@@ -96,7 +94,7 @@ https://github.com/tgstation/tgstation-server
 
 ## MAPS
 
-/tg/station currently comes equipped with five maps.
+/vm/station currently comes equipped with five maps.
 
 * [BoxStation (default)](https://tgstation13.org/wiki/Boxstation)
 * [MetaStation](https://tgstation13.org/wiki/MetaStation)
@@ -115,7 +113,7 @@ Anytime you want to make changes to a map it's imperative you use the [Map Mergi
 
 ## AWAY MISSIONS
 
-/tg/station supports loading away missions however they are disabled by default.
+/vm/station supports loading away missions however they are disabled by default.
 
 Map files for away missions are located in the _maps/RandomZLevels directory. Each away mission includes it's own code definitions located in /code/modules/awaymissions/mission_code. These files must be included and compiled with the server beforehand otherwise the server will crash upon trying to load away missions that lack their code.
 
