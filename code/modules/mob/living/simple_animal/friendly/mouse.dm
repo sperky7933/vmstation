@@ -22,6 +22,7 @@
 	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB
 	mob_size = MOB_SIZE_TINY
 	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
+	faction = list("rat")
 	var/body_color //brown, gray and white, leave blank for random
 	gold_core_spawnable = FRIENDLY_SPAWN
 	var/chew_probability = 1
@@ -61,10 +62,13 @@
 		if(!stat)
 			var/mob/M = AM
 			to_chat(M, "<span class='notice'>[icon2html(src, M)] Squeak!</span>")
+	if(istype(AM, /obj/item/reagent_containers/food/snacks/royalcheese))
+		evolve()
+		qdel(AM)
 	..()
 
 /mob/living/simple_animal/mouse/handle_automated_action()
-	if(prob(chew_probability) && GLOB.joined_player_list.len >= min_players)
+	if(prob(chew_probability) && GLOB.joined_player_list.len >= min_players) //dont chew when low players
 		var/turf/open/floor/F = get_turf(src)
 		if(istype(F) && !F.intact)
 			var/obj/structure/cable/C = locate() in F
@@ -77,6 +81,38 @@
 				else
 					C.deconstruct()
 					visible_message("<span class='warning'>[src] chews through the [C].</span>")
+
+	for(var/obj/item/reagent_containers/food/snacks/cheesewedge/smallcheese in range(1, src))
+		qdel(smallcheese)
+		breed(1) //tg devs decided to name this to "be_fruitful()"... wtf?! just name it breed, epic_sex, something cool not fking fruitful
+		return
+
+	for(var/obj/item/reagent_containers/food/snacks/store/cheesewheel/cheese in range(1, src))
+		qdel(cheese)
+		breed(5)
+		return
+
+	for(var/obj/item/reagent_containers/food/snacks/royalcheese/bigcheese in range(1, src))
+		qdel(bigcheese)
+		evolve()
+		return
+
+/mob/living/simple_animal/mouse/proc/breed(var/mice)
+	visible_message("<span class='warning'>[src] carefully eats the cheese.</span>")
+	new /mob/living/simple_animal/mouse(loc)
+	//TODO: spawn another rat
+
+/**
+  *Spawns a new regal rat
+  */
+/mob/living/simple_animal/mouse/proc/evolve()
+	var/mob/living/simple_animal/hostile/regalrat = new /mob/living/simple_animal/hostile/regalrat(loc)
+	visible_message("<span class='warning'>[src] devours the cheese! He morphs into something... greater!</span>")
+	regalrat.say("RISE, MY SUBJECTS! REEEEEEEEEEEEEE!")
+	//TODO: play local sound that is the autistic screech REEEE.ogg!
+	if(mind)
+		mind.transfer_to(regalrat)
+	qdel(src)
 
 /*
  * Mouse types
