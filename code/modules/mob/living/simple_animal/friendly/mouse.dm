@@ -99,8 +99,8 @@
 
 /mob/living/simple_animal/mouse/proc/breed(var/mice)
 	visible_message("<span class='warning'>[src] carefully eats the cheese.</span>")
-	new /mob/living/simple_animal/mouse(loc)
-	//TODO: spawn another rat
+	for(var/i=1 to mice)
+		new /mob/living/simple_animal/mouse(loc)
 
 /**
   *Spawns a new regal rat
