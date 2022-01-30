@@ -8,6 +8,10 @@
  
 ## DOWNLOADING
 
+QUESTIONS ON DATABASE/HOSTING/DOWNLOADING/ETC?
+DM ME ON DISCORD pain#6519
+OR ON GITHUB, not-a-furry
+
 There are a number of ways to download the source code. Some are described here, an alternative all-inclusive guide is also located at https://www.tgstation13.org/wiki/Downloading_the_source_code
 
 Option 1:
