@@ -113,6 +113,10 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 
 #define ismouse(A) (istype(A, /mob/living/simple_animal/mouse))
 
+#define israt(A) (istype(A, /mob/living/simple_animal/hostile/rat))
+
+#define isregalrat(A) (istype(A, /mob/living/simple_animal/hostile/regalrat))
+
 #define iscow(A) (istype(A, /mob/living/simple_animal/cow))
 
 #define isslime(A) (istype(A, /mob/living/simple_animal/slime))
