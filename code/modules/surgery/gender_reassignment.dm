@@ -45,7 +45,7 @@
 		target.gender = FEMALE
 
 	else
-		user.visible_message("[user] has removed [target]'s' genitals!", "<span class='notice'>You removed [target]'s' genitals.</span>")
+		user.visible_message("[user] has removed [target]'s genitals!", "<span class='notice'>You removed [target]'s genitals.</span>")
 		target.gender = PLURAL
 
 	return 1
