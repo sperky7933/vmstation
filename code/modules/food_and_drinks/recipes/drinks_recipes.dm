@@ -174,6 +174,10 @@
 	results = list(/datum/reagent/consumable/ethanol/manly_dorf = 3)
 	required_reagents = list (/datum/reagent/consumable/ethanol/beer = 1, /datum/reagent/consumable/ethanol/ale = 2)
 
+/datum/chemical_reaction/manliest_dorf
+	results = list(/datum/reagent/consumable/ethanol/manly_dorf/ancient = 3)
+	required_reagents = list (/datum/reagent/consumable/ethanol/beer/dwarven = 1, /datum/reagent/consumable/ethanol/rock = 2)
+
 /datum/chemical_reaction/greenbeer
 	name = "Green Beer"
 	id = /datum/reagent/consumable/ethanol/beer/green

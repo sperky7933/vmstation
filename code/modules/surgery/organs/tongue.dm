@@ -17,6 +17,7 @@
 		/datum/language/monkey,
 		/datum/language/narsie,
 		/datum/language/beachbum,
+		/datum/language/dwarven,
 		/datum/language/ratvar,
 		/datum/language/aphasia,
 		/datum/language/piratespeak,

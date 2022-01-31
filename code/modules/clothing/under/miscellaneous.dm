@@ -149,3 +149,13 @@
 	item_color = "durathread"
 	can_adjust = FALSE
 	armor = list("melee" = 10, "laser" = 10, "fire" = 40, "acid" = 10, "bomb" = 5)
+
+/obj/item/clothing/under/misc/gambison
+	name = "dwarven gambison"
+	desc = "hardy dwarven gambison, resistant to explosions and fire"
+	icon_state = "gambison"
+	item_state = "gambison"
+	armor = list("melee" = 5, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 30, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 0)
+	strip_delay = 50
+	alt_covers_chest = TRUE
+	has_sensor =  NO_SENSORS

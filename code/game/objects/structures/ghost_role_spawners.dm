@@ -29,6 +29,52 @@
 	new/obj/structure/fluff/empty_terrarium(get_turf(src))
 	return ..()
 
+/obj/effect/mob_spawn/human/dwarven_sarcophagus
+	name = "ancient sarcophagus"
+	desc = "An ancient artifact of greater past. Emits fiery energy"
+	mob_name = "a dwarf"
+	icon = 'icons/obj/dwarven.dmi'
+	icon_state = "sarcophagus"
+	density = TRUE
+	roundstart = FALSE
+	death = FALSE
+	mob_species = /datum/species/human/dwarf
+	outfit = /datum/outfit/dwarven
+	short_desc = "You are an ancient dwarf awakened from your slumber to regrow your once grand empire."
+	flavour_text = "Milennia have passed since your grand civilization last stood. \
+	You remember the prophecies of a great disaster, in fear of death you volountereed for you blood to be sealed within the lava sarcophagus. \
+	Last thing you remember is a bright light before you awakened from slumber, even tough the sarcophagus is damaged it can still revive your dead brotheren. \
+	Now you are filled with the desire to expand and regrow your civilization once more. Expand, sell artifacts and hunt local fauna while becoming new kings of this ashen land. Strike the earth!"
+	assignedrole = "Dwarf"
+
+/obj/effect/mob_spawn/human/dwarven_sarcophagus/Initialize(mapload)
+	. = ..()
+	var/area/A = get_area(src)
+	notify_ghosts("A Dwarf is ready to awaken at [A.name]", source = src, action=NOTIFY_ATTACK, flashwindow = FALSE, ignore_key = POLL_IGNORE_DWARF)
+
+
+/obj/effect/mob_spawn/human/dwarven_sarcophagus/special(mob/living/new_spawn)
+	var/dwarven_name = pick("Ognog", "Lorenzo", "Bakarat", "Cercer", "Aluminium", "Iro", "Ido", "Kochko", "Bahr", "Mozz", "Fercer", "Bat", "Rot", "Lavaan", "Gorg", "Philzer", "Lerh", \
+	"Vinth", "Gharo","Logreg", "Stawgar", "Lirko", "Ontksu", "Crakta", "Larka", "Dorgo") + " " +pick("Iron","Mithril","Strong","The ","Root","Void","Blood","Titanium","Uranium", \
+	"Plasma") + pick("Seeker","Hunter","Willed","Shield","Axe","Pickaxe","Bat","Tendril","Death","Lava","Man","Miner","Wised")
+
+	new_spawn.fully_replace_character_name(null,dwarven_name)
+	if(ishuman(new_spawn))
+		var/mob/living/carbon/human/H = new_spawn
+		H.underwear = "Nude"
+		H.dna.add_mutation(DWARFISM) //you are a dwarf man
+		H.update_body()
+
+/obj/effect/mob_spawn/human/dwarven_sarcophagus/Destroy()
+	new /obj/structure/destructible/dwarven/dwarven_sarcophagus(get_turf(src))
+	return ..()
+
+/datum/outfit/dwarven
+	name ="Dwarf"
+	uniform = /obj/item/clothing/under/misc/gambison
+	shoes = /obj/item/clothing/shoes/sandal
+	back = /obj/item/pickaxe/silver
+
 //Ash walker eggs: Spawns in ash walker dens in lavaland. Ghosts become unbreathing lizards that worship the Necropolis and are advised to retrieve corpses to create more ash walkers.
 
 /obj/effect/mob_spawn/human/ash_walker

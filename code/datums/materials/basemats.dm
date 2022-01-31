@@ -147,3 +147,15 @@
 	desc = "Organic matter"
 	color = "#735b4d"
 	strength_modifier = 0.8
+
+/datum/material/dwarven
+	name = "dwarven alloy"
+	id = "dwarven"
+	desc = "Millenia ago cities of stone and metal were built with this"
+	color = "f4f0c3"
+	categories = list(MAT_CATEGORY_RIGID = TRUE)
+	sheet_type = /obj/item/stack/sheet/mineral/dwarven
+	value_per_unit = 0.1
+	strength_modifier = 1.2
+	armor_modifiers = list("melee" = 1.35, "bullet" = 1.1, "laser" = 1, "energy" = 1.1, "bomb" = 1.75, "bio" = 1, "rad" = 1, "fire" = 1.35, "acid" = 1)
+	beauty_modifier = 0.2

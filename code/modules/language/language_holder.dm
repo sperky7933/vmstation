@@ -124,6 +124,9 @@
 	languages = list(/datum/language/common, /datum/language/drone, /datum/language/machine, /datum/language/uncommon)
 	only_speaks_language = /datum/language/drone
 
+/datum/language_holder/dwarf
+	languages = list(/datum/language/dwarven, /datum/language/common)
+
 /datum/language_holder/drone/syndicate
 	only_speaks_language = null
 

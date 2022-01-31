@@ -84,3 +84,7 @@
 //ash walker nest
 /area/ruin/unpowered/ash_walkers
 	icon_state = "red"
+
+//dwarven sarcophagus
+/area/ruin/unpowered/dwarves
+	icon_state = "red"
