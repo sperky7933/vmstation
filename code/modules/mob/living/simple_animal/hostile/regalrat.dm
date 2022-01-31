@@ -141,16 +141,21 @@
 	. = ..()
 	if(!.)
 		return
+	var/something_from_nothing = FALSE
 	for(var/mob/living/simple_animal/mouse/M in oview(owner, 5))
 		var/mob/living/simple_animal/hostile/rat/new_rat = new(get_turf(M))
+		something_from_nothing = TRUE
 		if(M.mind && M.stat == CONSCIOUS)
 			M.mind.transfer_to(new_rat)
 		if(istype(owner,/mob/living/simple_animal/hostile/regalrat))
 			var/mob/living/simple_animal/hostile/regalrat/giantrat = owner
 			new_rat.faction = giantrat.faction
 		qdel(M)
+	if(!something_from_nothing)
 		new /mob/living/simple_animal/mouse(owner.loc)
 		owner.visible_message("<span class='warning'>[owner] commands a mouse to its side!</span>")
+	else
+		owner.visible_message("<span class='warning'>[owner] commands its army to action, mutating them into rats!</span>")
 	StartCooldown()
 
 /mob/living/simple_animal/hostile/rat
@@ -182,10 +187,6 @@
 /mob/living/simple_animal/hostile/rat/Initialize()
 	. = ..()
 	AddSpell(new /obj/effect/proc_holder/spell/targeted/night_vision/revenant(null))
-	var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you want to play as a rat?", ROLE_SENTIENCE, null, FALSE, 100, POLL_IGNORE_SENTIENCE_POTION)
-	if(LAZYLEN(candidates) && !mind)
-		var/mob/dead/observer/C = pick(candidates)
-		key = C.key
 
 /mob/living/simple_animal/hostile/rat/Destroy()
 	return ..()

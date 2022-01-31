@@ -83,14 +83,16 @@
 					visible_message("<span class='warning'>[src] chews through the [C].</span>")
 
 	for(var/obj/item/reagent_containers/food/snacks/cheesewedge/smallcheese in range(1, src))
-		qdel(smallcheese)
-		breed(1) //tg devs decided to name this to "be_fruitful()"... wtf?! just name it breed, epic_sex, something cool not fking fruitful
-		return
+		if(prob(10))
+			qdel(smallcheese)
+			breed(1) //tg devs decided to name this to "be_fruitful()"... wtf?! just name it breed, epic_sex, something cool not fking fruitful
+			return
 
 	for(var/obj/item/reagent_containers/food/snacks/store/cheesewheel/cheese in range(1, src))
-		qdel(cheese)
-		breed(5)
-		return
+		if(prob(10))
+			qdel(cheese)
+			breed(5)
+			return
 
 	for(var/obj/item/reagent_containers/food/snacks/royalcheese/bigcheese in range(1, src))
 		qdel(bigcheese)
