@@ -80,6 +80,14 @@
 		heal_bodypart_damage(10)
 		qdel(target)
 
+	if(istype(target, /obj/item/reagent_containers/food/snacks/store/cheesewheel))
+		if (health >= maxHealth)
+			to_chat(src, "<span class='warning'>You are not hurt!</span>")
+			return
+		to_chat(src, "<span class='green'>You eat \the [src], restoring some health.</span>")
+		heal_bodypart_damage(50)
+		qdel(target)
+
 /**
   *This action creates trash, money, dirt, and cheese.
   */
@@ -99,7 +107,10 @@
 	var/turf/T = get_turf(owner)
 	var/loot = rand(1,100)
 	switch(loot)
-		if(1 to 5)
+		if(1 to 2)
+			to_chat(owner, "<span class='notice'>AMAZING! You found a cheese wheel!</span>")
+			new /obj/item/reagent_containers/food/snacks/store/cheesewheel(T)
+		if(2 to 5)
 			to_chat(owner, "<span class='notice'>Score! You find some cheese!</span>")
 			new /obj/item/reagent_containers/food/snacks/cheesewedge(T)
 		if(6 to 10)
