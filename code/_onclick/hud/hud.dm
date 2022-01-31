@@ -33,8 +33,6 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	var/obj/screen/alien_plasma_display
 	var/obj/screen/alien_queen_finder
 
-	var/obj/screen/alcohol_amount
-
 	var/obj/screen/devil/soul_counter/devilsouldisplay
 
 	var/obj/screen/action_intent
@@ -109,10 +107,6 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	blobpwrdisplay = null
 	alien_plasma_display = null
 	alien_queen_finder = null
-	alcohol_amount = null
-	deity_power_display = null
-	deity_follower_display = null
-	nightvisionicon = null
 
 	QDEL_LIST_ASSOC_VAL(plane_masters)
 	QDEL_LIST(screenoverlays)

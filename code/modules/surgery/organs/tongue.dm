@@ -24,14 +24,7 @@
 
 /obj/item/organ/tongue/Initialize(mapload)
 	. = ..()
-	languages_possible = typecacheof(list(
-		/datum/language/common,
-		/datum/language/draconic,
-		/datum/language/monkey,
-		/datum/language/narsie,
-		/datum/language/ratvar,*
-		/datum/language/dwarvish
-	))
+	languages_possible = languages_possible_base
 
 /obj/item/organ/tongue/proc/handle_speech(datum/source, list/speech_args)
 
