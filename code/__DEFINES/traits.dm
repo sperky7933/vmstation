@@ -239,3 +239,5 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define SANGUIOSE_TRAIT "sanguiose"
 #define FROGENITE_TRAIT "frogenite"
 #define FERVEATIUM_TRAIT "ferveatium"
+#define FLIGHTPACK_TRAIT "flightpack"
+#define FLIGHTSHOES_TRAIT "flightshoes"
