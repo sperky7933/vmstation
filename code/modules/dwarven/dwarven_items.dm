@@ -18,7 +18,6 @@
 	lefthand_file = 'icons/mob/inhands/weapons/hammers_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/hammers_righthand.dmi'
 	flags_1 = CONDUCT_1
-	material_flags = MATERIAL_ADD_PREFIX | MATERIAL_COLOR
 	force = 14
 	force_unwielded = 14
 	force_wielded = 20
@@ -38,7 +37,6 @@
 	desc = "Dwarf dwarf dwarf dwarf dwarf dwarf? DWARF!"
 	icon = 'icons/obj/items_and_weapons.dmi'
 	flags_1 = CONDUCT_1
-	material_flags = MATERIAL_ADD_PREFIX | MATERIAL_COLOR
 
 /obj/item/hatchet/dwarven/axe
 	name = "dwarven hand axe"

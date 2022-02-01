@@ -155,7 +155,4 @@
 	color = "f4f0c3"
 	categories = list(MAT_CATEGORY_RIGID = TRUE)
 	sheet_type = /obj/item/stack/sheet/mineral/dwarven
-	value_per_unit = 0.1
 	strength_modifier = 1.2
-	armor_modifiers = list("melee" = 1.35, "bullet" = 1.1, "laser" = 1, "energy" = 1.1, "bomb" = 1.75, "bio" = 1, "rad" = 1, "fire" = 1.35, "acid" = 1)
-	beauty_modifier = 0.2

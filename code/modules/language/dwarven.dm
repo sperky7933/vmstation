@@ -4,7 +4,6 @@
 	speech_verb = "mumbles"
 	ask_verb = "scuffs"
 	exclaim_verb = "growls"
-	sing_verb = "roars"
 	key = "8"
 	space_chance = 30
 	default_priority = 90
