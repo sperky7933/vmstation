@@ -872,7 +872,7 @@
 	name = "Conveyor Belt"
 	id = "conveyor_belt"
 	build_type = AUTOLATHE
-	materials = list()
+	materials = list(/datum/material/iron = 0)
 	build_path = /obj/item/conveyor_construct
 	category = list("initial", "Construction")
 
@@ -880,7 +880,7 @@
 	name = "Conveyor Belt Switch"
 	id = "conveyor_switch"
 	build_type = AUTOLATHE
-	materials = list()
+	materials = list(/datum/material/iron = 0)
 	build_path = /obj/item/conveyor_switch_construct
 	category = list("initial", "Construction")
 
