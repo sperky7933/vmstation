@@ -8,7 +8,7 @@
 	show_in_antagpanel = FALSE
 	prevent_roundtype_conversion = FALSE
 	antagpanel_category = "Dwarf"
-	var/datum/team/dwarf/dwarf_team
+	var/datum/team/dwarves/dwarf_team
 
 /datum/antagonist/dwarf/create_team(datum/team/team)
 	if(team)

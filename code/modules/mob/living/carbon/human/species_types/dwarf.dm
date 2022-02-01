@@ -17,9 +17,9 @@
 	*/
 	. = ..()
 
-/datum/species/squid/random_name(gender,unique,lastname)
+/datum/species/dwarf/random_name(gender,unique,lastname)
 	if(unique)
-		return random_unique_dwarf_name(r)
+		return random_unique_dwarf_name()
 
 	var/randname = dwarf_name()
 
@@ -28,7 +28,7 @@
 
 	return randname
 
-/proc/random_unique_squid_name(attempts_to_find_unique_name=10, genderToFind)
+/proc/random_unique_dwarf_name(attempts_to_find_unique_name=10, genderToFind)
     for(var/i in 1 to attempts_to_find_unique_name)
         . = capitalize(dwarf_name())
         if(!findname(.))

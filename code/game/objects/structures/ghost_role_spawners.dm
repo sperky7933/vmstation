@@ -63,9 +63,9 @@
 
 	new_spawn.mind.add_antag_datum(/datum/antagonist/dwarves, team)
 
-	new_spawn.fully_replace_character_name(null,dwarven_name)
+	new_spawn.fully_replace_character_name(null,random_unique_dwarf_name(gender))
 	if(ishuman(new_spawn))
-		var/mob/living/carbon/dwarf/H = new_spawn
+		var/mob/living/carbon/human/H = new_spawn
 		H.underwear = "Nude"
 		H.update_body()
 
