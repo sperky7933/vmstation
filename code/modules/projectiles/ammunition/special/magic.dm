@@ -19,7 +19,7 @@
 	projectile_type = /obj/item/projectile/magic/death
 
 /obj/item/ammo_casing/magic/lightning
-	projectile_type = /obj/projectile/magic/aoe/lightning
+	projectile_type = /obj/item/projectile/magic/aoe/lightning
 	
 /obj/item/ammo_casing/magic/teleport
 	projectile_type = /obj/item/projectile/magic/teleport

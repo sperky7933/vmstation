@@ -29,7 +29,7 @@
 	sharpness = IS_BLUNT
 
 
-/obj/item/twohanded/war_hammer/update_icon_state()
+/obj/item/twohanded/war_hammer/update_icon() // previously update_icon_state()
 	icon_state = "greyscale_dwarven_warhammer[wielded]"
 
 /obj/item/hatchet/dwarven

@@ -61,7 +61,7 @@
 	var/datum/language_holder/holder = new_spawn.get_language_holder()
 	holder.selected_default_language = /datum/language/dwarven
 
-	new_spawn.mind.add_antag_datum(/datum/antagonist/dwarves, team)
+	new_spawn.mind.add_antag_datum(/datum/antagonist/dwarf, team)
 
 	new_spawn.fully_replace_character_name(null,random_unique_dwarf_name(gender))
 	if(ishuman(new_spawn))
