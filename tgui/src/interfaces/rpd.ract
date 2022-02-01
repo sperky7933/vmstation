@@ -82,3 +82,9 @@
 		{{/each}}
 	</ui-display>
 {{/each}}
+{{#if data.category == 4}}
+    <ui-section label='Belt ID'>
+      <ui-button icon='pencil' action='belt_id' params='{"belt_id": "input"}'>Set</ui-button>
+      <span>{{data.belt_id}}</span>
+    </ui-section>
+{{/if}}
