@@ -60,6 +60,10 @@
 ///Empty ID define
 #define TIMER_ID_NULL -1
 
+//For servers that can't do with any additional lag, set this to none in flightpacks.dm in subsystem/processing.
+#define FLIGHTSUIT_PROCESSING_NONE 0
+#define FLIGHTSUIT_PROCESSING_FULL 1
+
 //! ## Initialization subsystem
 
 ///New should not call Initialize
@@ -158,6 +162,7 @@
 #define FIRE_PRIOTITY_BURNING		40
 #define FIRE_PRIORITY_DEFAULT		50
 #define FIRE_PRIORITY_PARALLAX		65
+#define FIRE_PRIORITY_FLIGHTPACKS   80
 #define FIRE_PRIORITY_MOBS			100
 #define FIRE_PRIORITY_TGUI			110
 #define FIRE_PRIORITY_TICKER		200
