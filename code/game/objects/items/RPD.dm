@@ -76,7 +76,7 @@ GLOBAL_LIST_INIT(transit_tube_recipes, list(
 
 GLOBAL_LIST_INIT(conveyor_belt_recipes, list(
 	"Conveyor belts" = list(
-		new /datum/pipe_info/belts("Conveyor Belt",					/obj/item/conveyor_construct),
+		new /datum/pipe_info/belts("Conveyor Belt",					/obj/item/conveyor_construct, /obj/machinery/conveyor),
 		new /datum/pipe_info/belt_switch("Conveyor Belt Lever",		/obj/item/conveyor_switch_construct)
 	)
 ))
@@ -193,10 +193,10 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 	icon_state = initial(path.icon_state)
 	dirtype=PIPE_ONEDIR
 
-/datum/pipe_info/belts/New(label, obj/path)
+/datum/pipe_info/belts/New(label, obj/path, obj/iconpath)
 	name = label
 	id = path
-	icon_state = initial(path.icon_state)
+	icon_state = initial(iconpath.icon_state)
 	dirtype = PIPE_UNARY
 
 /datum/pipe_info/plumbing/New(label, obj/path, dt=PIPE_UNARY)
@@ -400,12 +400,18 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 
 	. = FALSE
 
-	if((mode&DESTROY_MODE) && istype(A, /obj/item/pipe) || istype(A, /obj/structure/disposalconstruct) || istype(A, /obj/structure/c_transit_tube) || istype(A, /obj/structure/c_transit_tube_pod) || istype(A, /obj/item/pipe_meter))
+	if((mode&DESTROY_MODE) && istype(A, /obj/item/pipe) || istype(A, /obj/structure/disposalconstruct) || istype(A, /obj/structure/c_transit_tube) || istype(A, /obj/structure/c_transit_tube_pod) || istype(A, /obj/item/pipe_meter) || istype(A, /obj/item/conveyor_switch_construct) || istype(A, /obj/item/conveyor_construct))
 		to_chat(user, "<span class='notice'>You start destroying a pipe...</span>")
 		playsound(get_turf(src), 'sound/machines/click.ogg', 50, 1)
 		if(do_after(user, destroy_speed, target = A))
 			activate()
 			qdel(A)
+		return
+
+	if(category == BELT_CATEGORY && (istype(A, /obj/machinery/conveyor) || istype(A, /obj/machinery/conveyor_switch)))
+		to_chat(user, "<span class='notice'>You sync the [src]'s ID.</span>")
+		var/obj/item/conveyor_construct/D = A
+		belt_id = D.id
 		return
 
 	if((mode&PAINT_MODE))
