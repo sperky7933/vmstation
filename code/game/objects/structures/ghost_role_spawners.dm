@@ -31,7 +31,7 @@
 
 /obj/effect/mob_spawn/human/dwarven_sarcophagus
 	name = "ancient sarcophagus"
-	desc = "An ancient artifact of greater past. Emits fiery energy"
+	desc = "An ancient artifact of greater past. Emits fiery energy."
 	mob_name = "a dwarf"
 	icon = 'icons/obj/dwarven.dmi'
 	icon_state = "sarcophagus"
@@ -40,29 +40,33 @@
 	death = FALSE
 	mob_species = /datum/species/dwarf
 	outfit = /datum/outfit/dwarven
-	short_desc = "You are an ancient dwarf awakened from your slumber to regrow your once grand empire."
 	flavour_text = "Milennia have passed since your grand civilization last stood. \
 	You remember the prophecies of a great disaster, in fear of death you volountereed for you blood to be sealed within the lava sarcophagus. \
 	Last thing you remember is a bright light before you awakened from slumber, even tough the sarcophagus is damaged it can still revive your dead brotheren. \
 	Now you are filled with the desire to expand and regrow your civilization once more. Expand, sell artifacts and hunt local fauna while becoming new kings of this ashen land. Strike the earth!"
 	assignedrole = "Dwarf"
+	var/datum/team/dwarves/team
 
 /obj/effect/mob_spawn/human/dwarven_sarcophagus/Initialize(mapload)
 	. = ..()
 	var/area/A = get_area(src)
 	notify_ghosts("A Dwarf is ready to awaken at [A.name]", source = src, action=NOTIFY_ATTACK, flashwindow = FALSE, ignore_key = POLL_IGNORE_DWARF)
 
-
 /obj/effect/mob_spawn/human/dwarven_sarcophagus/special(mob/living/new_spawn)
-	var/dwarven_name = pick("Ognog", "Lorenzo", "Bakarat", "Cercer", "Aluminium", "Iro", "Ido", "Kochko", "Bahr", "Mozz", "Fercer", "Bat", "Rot", "Lavaan", "Gorg", "Philzer", "Lerh", \
-	"Vinth", "Gharo","Logreg", "Stawgar", "Lirko", "Ontksu", "Crakta", "Larka", "Dorgo") + " " +pick("Iron","Mithril","Strong","The ","Root","Void","Blood","Titanium","Uranium", \
-	"Plasma") + pick("Seeker","Hunter","Willed","Shield","Axe","Pickaxe","Bat","Tendril","Death","Lava","Man","Miner","Wised")
+
+	new_spawn.fully_replace_character_name(null,random_unique_dwarf_name(gender))
+	to_chat(new_spawn, "<b>You are an ancient dwarf awakened from your slumber to regrow your once grand empire.</b>")
+
+	new_spawn.grant_language(/datum/language/dwarven)
+	var/datum/language_holder/holder = new_spawn.get_language_holder()
+	holder.selected_default_language = /datum/language/dwarven
+
+	new_spawn.mind.add_antag_datum(/datum/antagonist/dwarves, team)
 
 	new_spawn.fully_replace_character_name(null,dwarven_name)
 	if(ishuman(new_spawn))
-		var/mob/living/carbon/human/H = new_spawn
+		var/mob/living/carbon/dwarf/H = new_spawn
 		H.underwear = "Nude"
-		H.dna.add_mutation(DWARFISM) //you are a dwarf man
 		H.update_body()
 
 /obj/effect/mob_spawn/human/dwarven_sarcophagus/Destroy()

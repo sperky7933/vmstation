@@ -16,6 +16,9 @@
 /proc/moth_name()
 	return "[pick(GLOB.moth_first)] [pick(GLOB.moth_last)]"
 
+/proc/dwarf_name(gender)
+	return "[pick(GLOB.dwarf_first)] [pick(GLOB.dwarf_last)]"
+
 /proc/squid_name(gender)
 	if(gender == MALE)
 		return "[pick(GLOB.squid_names_male)]-[pick(GLOB.squid_names_male)]"
