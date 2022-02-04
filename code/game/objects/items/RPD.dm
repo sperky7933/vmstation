@@ -374,9 +374,9 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 			else
 				mode |= n
 		if("belt_id")
-			var/new_id = input("Select a belt id (0-200):", name, belt_id) as num|null
+			var/new_id = input("Select a belt id (0-255):", name, belt_id) as num|null
 			if(!isnull(new_id) && !..())
-				belt_id = "[CLAMP(text2num(new_id), 0, 200)]"
+				belt_id = "[CLAMP(text2num(new_id), 0, 255)]"
 			playeffect = FALSE
 
 	if(playeffect)
@@ -587,7 +587,7 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 
 /obj/item/pipe_dispenser/belt
 	name = "Rapid Belt Device (RBD)"
-	desc = "It creates belts don't ask me how"
+	desc = "It creates belts don't ask me how."
 	icon_state = "plumberer"
 	category = BELT_CATEGORY
 	locked = TRUE

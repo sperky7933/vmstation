@@ -27,8 +27,10 @@
 <ui-display title='Utilities'>
 	<ui-button icon='{{data.mode & 1 ? "check-square-o" : "square-o"}}'
 		action='mode' params='{"mode": 1}'>Build</ui-button>
+	{{#if data.category != 4}}
 	<ui-button icon='{{data.mode & 2 ? "check-square-o" : "square-o"}}'
 		action='mode' params='{"mode": 2}'>Wrench</ui-button>
+	{{/if}}
 	<ui-button icon='{{data.mode & 4 ? "check-square-o" : "square-o"}}'
 		action='mode' params='{"mode": 4}'>Destroy</ui-button>
 	{{#if data.category == 0}}
