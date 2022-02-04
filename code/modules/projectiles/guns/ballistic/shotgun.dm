@@ -260,3 +260,32 @@
 		hook.afterattack(target, user, flag, params)
 	else
 		return ..()
+
+/obj/item/gun/ballistic/doublebarrel/improvisedshotpistol
+	name = "Improvised Shotgun Pistol"
+	desc = "The lowest of the low when it comes to improvised firearms."
+	icon_state = "ishotgunpistol"
+	item_state = "gun"
+	mag_type = /obj/item/ammo_box/magazine/internal/shot/improvised
+	w_class = WEIGHT_CLASS_SMALL
+	weapon_weight = WEAPON_LIGHT
+	can_be_sawn_off = FALSE
+	fire_sound = 'sound/weapons/shotgunshot.ogg'
+	load_sound = 'sound/weapons/sawclose.ogg'
+	eject_sound = 'sound/weapons/sawopen.ogg'
+	vary_fire_sound = FALSE
+	fire_sound_volume = 90
+	dry_fire_sound = 'sound/items/match_strike.ogg'
+	casing_ejector = FALSE
+	internal_magazine = TRUE
+	bolt_type = BOLT_TYPE_NO_BOLT
+	tac_reloads = FALSE
+
+/obj/item/gun/ballistic/doublebarrel/improvisedshotpistol/shoot_live_shot(mob/living/user as mob|obj)
+	..()
+	to_chat(user, "<span class='italics'>The [src] falls apart!</span>")
+	spawn(0)
+		/obj/item/assembly/igniter()
+		/obj/item/grenade/chem_grenade()
+	qdel(src) //Make it break on firing.
+	//also burn the player's hand and tell them so.
