@@ -77,7 +77,7 @@ GLOBAL_LIST_INIT(transit_tube_recipes, list(
 GLOBAL_LIST_INIT(conveyor_belt_recipes, list(
 	"Conveyor belts" = list(
 		new /datum/pipe_info/belts("Conveyor Belt",					/obj/item/conveyor_construct, /obj/machinery/conveyor),
-		new /datum/pipe_info/belt_switch("Conveyor Belt Lever",		/obj/item/conveyor_switch_construct)
+		new /datum/pipe_info/belt_switch("Conveyor Belt Switch",		/obj/item/conveyor_switch_construct)
 	)
 ))
 GLOBAL_LIST_INIT(fluid_duct_recipes, list(
