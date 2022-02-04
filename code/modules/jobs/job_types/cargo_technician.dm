@@ -22,6 +22,7 @@
 	name = "Cargo Technician"
 	jobtype = /datum/job/cargo_tech
 
+	backpack_contents = list(/obj/item/pipe_dispenser/belt=1)
 	belt = /obj/item/pda/cargo
 	ears = /obj/item/radio/headset/headset_cargo
 	uniform = /obj/item/clothing/under/rank/cargo/tech
