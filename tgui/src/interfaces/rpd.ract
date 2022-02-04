@@ -1,4 +1,5 @@
 <ui-display title='Direction'>
+{{#if data.category != 4}}
 	{{#each data.preview_rows}}
 		<ui-section>
 			{{#each previews}}
@@ -7,7 +8,18 @@
 			{{/each}}
 		</ui-section>
 	{{/each}}
+{{else}}
+	{{#each data.preview_rows}}
+		<ui-section>
+			{{#each previews}}
+	            <ui-button state='{{selected ? "selected" : null}}' action='setdir'
+    	            params='{"dir": {{dir}}, "flipped": {{flipped}}}'>{{dir_name}}</ui-button>
+			{{/each}}
+		</ui-section>
+    {{/each}}
+{{/if}}
 </ui-display>
+
 {{#if data.category == 0}}
 	<ui-display title='Color'>
 		{{#each data.paint_colors}}
