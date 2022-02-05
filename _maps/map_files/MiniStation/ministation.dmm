@@ -36,7 +36,7 @@
 "aJ" = (/obj/structure/table/reinforced,/obj/item/card/id/captains_spare,/turf/open/floor/plasteel,/area/bridge)
 "aK" = (/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,/turf/open/floor/plasteel,/area/bridge)
 "aL" = (/obj/machinery/light{dir = 4},/turf/open/floor/plasteel,/area/bridge)
-"aM" = (/obj/machinery/keycard_auth{pixel_y = -24},/obj/machinery/airalarm{dir = 4; pixel_x = -23},/turf/open/floor/plasteel,/area/bridge)
+"aM" = (/obj/machinery/keycard_auth{pixel_y = -24},/obj/machinery/airalarm{dir = 4; pixel_x = -23},/obj/structure/closet/secure_closet/captains,/turf/open/floor/plasteel,/area/bridge)
 "aN" = (/obj/structure/cable,/turf/open/floor/plasteel,/area/bridge)
 "aO" = (/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{dir = 6},/turf/open/floor/plasteel,/area/bridge)
 "aP" = (/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{dir = 4},/turf/open/floor/plasteel,/area/bridge)
