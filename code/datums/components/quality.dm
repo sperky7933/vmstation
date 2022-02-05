@@ -46,11 +46,13 @@ Items that reach quality of MASTERWORK_QUALITY have a tiny chance of instead bec
 		quality_val = pick(2;0 ,4;1 ,6;2 ,8;3 ,6;4 ,4;5 ,2;6)
 
 
-	if(!_creator || !_skill) //no runtimes
+	if(!_creator) //no runtimes
 		return
 	creator = _creator
 
-	var/quality_skill_modifier = creator.mind.get_skill_modifier(_skill, SKILL_QUALITY_MODIFIER)
+	var/quality_skill_modifier = 1
+	if(isdwarf(creator))
+		quality_skill_modifier *= 1.5 //dwarf better crafters
 	creator_name = creator.name
 
 	var/obj/item/parent_item = parent

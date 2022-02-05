@@ -55,7 +55,6 @@
 /obj/effect/mob_spawn/human/dwarven_sarcophagus/special(mob/living/new_spawn)
 
 	new_spawn.fully_replace_character_name(null,random_unique_dwarf_name(gender))
-	to_chat(new_spawn, "<b>You are an ancient dwarf awakened from your slumber to regrow your once grand empire.</b>")
 
 	new_spawn.grant_language(/datum/language/dwarven)
 	var/datum/language_holder/holder = new_spawn.get_language_holder()

@@ -67,17 +67,19 @@
 		to_chat(user, "<span class='notice'>You start smelting [O] into [initial(refined_result.name)].</span>")
 	if(!do_after(user, 30, target = src))
 		return FALSE
-	var/efficiency = user?.mind.get_skill_modifier(/datum/skill/operating, SKILL_EFFICIENCY_MODIFIER)
+	var/efficiency = 1
+	if(isdwarf(user))
+		efficiency *= 1.5
 	if(prob(efficiency))
 		to_chat(user, "<span class='nicegreen'>You succeed in smelting [O]!</span>")
 		O.use(1)
 		new refined_result(drop_location())
-		user?.mind.adjust_experience(/datum/skill/operating, O.mine_experience * 2) //Get double because smelting is more effort than mining in my honest opinion ok? ok.
+		//user?.mind.adjust_experience(/datum/skill/operating, O.mine_experience * 2) //Get double because smelting is more effort than mining in my honest opinion ok? ok.
 		if(O.amount > 0) //Only try going recursive if we still have ore
 			try_forge(user, O, refined_result, TRUE)
 	else
 		O.use(1)
-		user?.mind.adjust_experience(/datum/skill/operating, O.mine_experience * 0.5)
+		//user?.mind.adjust_experience(/datum/skill/operating, O.mine_experience * 0.5)
 		to_chat(user, "<span class='warning'>You fail smelting [O] and destroy it!</span>")
 		if(O.amount > 0) //Only try going recursive if we still have ore
 			try_forge(user, O, refined_result, TRUE)
@@ -234,12 +236,14 @@
 	. = ..()
 ///This proc contains everything that happens when you hit the parent with mallet hence the name handle_mallet
 /obj/structure/destructible/dwarven/workshop/proc/handle_mallet(mob/user)
-	var/efficiency = user?.mind.get_skill_modifier(/datum/skill/operating, SKILL_EFFICIENCY_MODIFIER)
+	var/efficiency = 1
+	if(isdwarf(user))
+		efficiency *= 1.5
 	to_chat(user,"<span class='notice'>You start looking through design notes...</span>")
 	if(!do_after(user, 15, target = src))
 		return FALSE
 	if(!prob(efficiency))
-		user?.mind.adjust_experience(/datum/skill/operating, 1)
+		//user?.mind.adjust_experience(/datum/skill/operating, 1)
 		to_chat(user,"<span class='notice'>You cannot find anything of value.</span>")
 		return
 
@@ -275,7 +279,7 @@
 			return
 	materials.use_materials(initial(wanted_structure.custom_materials))
 	new /obj/item/dwarven/blueprint(drop_location(),wanted_structure)
-	user?.mind.adjust_experience(/datum/skill/operating, 4)
+	//user?.mind.adjust_experience(/datum/skill/operating, 4)
 
 ///Handles the choosing and creation of pickaxes
 /obj/structure/destructible/dwarven/workshop/proc/handle_create_pickaxe(mob/user)
@@ -297,7 +301,7 @@
 			return
 	materials.use_materials(initial(wanted_pickaxe.custom_materials))
 	new wanted_pickaxe(drop_location())
-	user?.mind.adjust_experience(/datum/skill/operating, 4)
+	//user?.mind.adjust_experience(/datum/skill/operating, 4)
 
 ///Handles the choosing and creation of upgrade kits
 /obj/structure/destructible/dwarven/workshop/proc/handle_upgrades(mob/user)
@@ -307,7 +311,7 @@
 		return
 	materials.use_materials(list(/datum/material/dwarven = 10000))
 	new /obj/item/dwarven/upgrade_kit(drop_location())
-	user?.mind.adjust_experience(/datum/skill/operating, 4)
+	//user?.mind.adjust_experience(/datum/skill/operating, 4)
 
 
 /obj/structure/destructible/dwarven/anvil
@@ -410,16 +414,17 @@
 		return
 
 	materials_used[S] += crafting_list[item_built]
-	var/efficiency = user?.mind.get_skill_modifier(/datum/skill/operating, SKILL_EFFICIENCY_MODIFIER)*2 //*2 because it is hard as fuck to get it and even then the result is most often shoddy
-
+	var/efficiency = 1 //*2 because it is hard as fuck to get it and even then the result is most often shoddy
+	if(isdwarf(user))
+		efficiency *= 1.5
 	if(!prob(efficiency))
 		materials.use_materials(materials_used,0.2)
-		user?.mind.adjust_experience(/datum/skill/operating, 2)
+		//user?.mind.adjust_experience(/datum/skill/operating, 2)
 		to_chat(user,"<span class='notice'>You fail to create anything of value</span>")
 		return
 
-	user?.mind.adjust_experience(/datum/skill/operating, 20)
+	//user?.mind.adjust_experience(/datum/skill/operating, 20)
 	materials.use_materials(materials_used)
 	var/obj/item/new_item = new item_built(drop_location())
 	new_item.set_custom_materials(materials_used)
-	new_item.add_creator(user)
+	//new_item.add_creator(user)

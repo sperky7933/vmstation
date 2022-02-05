@@ -1,5 +1,5 @@
 /datum/language/dwarven
-	name = "lavaan dwarven tongue"
+	name = "Dwarven"
 	desc = "An ancient language from the distant past, awoken by sudden lava and pain."
 	speech_verb = "mumbles"
 	ask_verb = "scuffs"

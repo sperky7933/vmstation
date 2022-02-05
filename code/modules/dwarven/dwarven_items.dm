@@ -196,13 +196,13 @@
 
 /obj/item/dwarven/mallet
 	name = "dwarven mallet"
-	desc = "Dwarven mallet, easy to make , easy to use, other than the fact it is absolutely tiny"
+	desc = "Dwarven mallet, it is quite tiny"
 	icon_state = "mallet"
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/dwarven/blueprint
 	name = "dwarven structure print"
-	desc = "Dwarven instructions on how to build a dwarven structure, includes materials how neat."
+	desc = "Dwarven instructions on how to build dwarven structures."
 	icon_state = "structure_print"
 	w_class = WEIGHT_CLASS_SMALL
 	var/obj/structure/destructible/dwarven/structure
@@ -232,11 +232,11 @@
 /obj/item/dwarven/upgrade_kit/attackby(obj/item/I, mob/living/user, params)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		I.add_creator(H)
+		//I.add_creator(H)
 		new /obj/effect/decal/cleanable/ash(get_turf(src))
 	qdel(src)
 	. = ..()
 
 /obj/item/dwarven/upgrade_kit/debug/attackby(obj/item/I, mob/living/user, params)
-	user?.mind.adjust_experience(/datum/skill/operating,100)
+	//user?.mind.adjust_experience(/datum/skill/operating,100) TODO: MAKE MODIFICATION KIT DO SOMETHING. FOR EXAMPLE, OBTAINABLE SPELL THAT DWARVES GET THAT MAKE THEM ABLE TO MAKE DWARF ITEMS?
 	. = ..()

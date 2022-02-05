@@ -58,7 +58,7 @@
 	id = "dwarf"
 	description = "Millenia ago dwarves ruled lavaland till a cataclysm came. Lucky ones sealed themselves inside a magical sarcophagus. First of the dwarves have awakened even tough the sarcophagus is damaged."
 	suffix = "lavaland_surface_dwarves.dmm"
-	cost = 1 //TODO: LOWER THE COST
+	cost = 20
 	allow_duplicates = FALSE
 
 /datum/map_template/ruin/lavaland/syndicate_base
