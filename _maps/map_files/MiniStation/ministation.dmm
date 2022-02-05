@@ -33,7 +33,7 @@
 "aG" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,/turf/open/floor/plasteel,/area/bridge)
 "aH" = (/obj/structure/table/reinforced,/obj/item/storage/secure/briefcase,/obj/item/assembly/flash,/turf/open/floor/plasteel,/area/bridge)
 "aI" = (/obj/structure/chair/comfy/black{dir = 1; name = "Command Station"},/obj/item/radio/intercom{name = "Station Intercom (General)"; pixel_y = 28},/obj/effect/landmark/start/captain,/obj/machinery/button/door{id = "bridge blast"; name = "Bridge Blast Door Control"; pixel_x = 29; pixel_y = 6; req_access_txt = "19"},/obj/structure/cable,/turf/open/floor/plasteel,/area/bridge)
-"aJ" = (/obj/structure/table/reinforced,/obj/item/card/id/captains_spare,/turf/open/floor/plasteel,/area/bridge)
+"aJ" = (/obj/structure/table/reinforced,/turf/open/floor/plasteel,/area/bridge)
 "aK" = (/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,/turf/open/floor/plasteel,/area/bridge)
 "aL" = (/obj/machinery/light{dir = 4},/turf/open/floor/plasteel,/area/bridge)
 "aM" = (/obj/machinery/keycard_auth{pixel_y = -24},/obj/machinery/airalarm{dir = 4; pixel_x = -23},/obj/structure/closet/secure_closet/captains,/turf/open/floor/plasteel,/area/bridge)
