@@ -330,6 +330,7 @@
 	reqs = list(/obj/item/assembly/igniter = 1,
 				/obj/item/grenade/chem_grenade = 1,
 				/obj/item/stack/cable_coil = 1,
+				/obj/item/stack/sheet/metal = 1,
 				/obj/item/ammo_casing/shotgun/improvised = 1)
 	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
 	time = 100
