@@ -1,1 +1,1 @@
-#define FORCE_MAP "_maps/hippiestation.json"
+#define FORCE_MAP "_maps/ministation.json"
