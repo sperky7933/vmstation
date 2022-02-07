@@ -3,11 +3,14 @@
 		<ui-section>
 			{{#each previews}}
 				<ui-button state='{{selected ? "selected" : null}}' action='setdir'
-					params='{"dir": {{dir}}, "flipped": {{flipped}}}'><span class="pipes32x32 {{dir}}-{{icon_state}}" title="{{dir_name}}"></span></ui-button>
+					params='{"dir": {{dir}}, "flipped": {{flipped}}}'> 
+					{{#if data.category != 4}} <span class="pipes32x32 {{dir}}-{{icon_state}}" title="{{dir_name}}"></span> {{else}} {{dir_name}} {{/if}} 
+				</ui-button>
 			{{/each}}
 		</ui-section>
 	{{/each}}
 </ui-display>
+
 {{#if data.category == 0}}
 	<ui-display title='Color'>
 		{{#each data.paint_colors}}
@@ -27,8 +30,10 @@
 <ui-display title='Utilities'>
 	<ui-button icon='{{data.mode & 1 ? "check-square-o" : "square-o"}}'
 		action='mode' params='{"mode": 1}'>Build</ui-button>
+	{{#if data.category != 4}}
 	<ui-button icon='{{data.mode & 2 ? "check-square-o" : "square-o"}}'
 		action='mode' params='{"mode": 2}'>Wrench</ui-button>
+	{{/if}}
 	<ui-button icon='{{data.mode & 4 ? "check-square-o" : "square-o"}}'
 		action='mode' params='{"mode": 4}'>Destroy</ui-button>
 	{{#if data.category == 0}}
@@ -82,3 +87,9 @@
 		{{/each}}
 	</ui-display>
 {{/each}}
+{{#if data.category == 4}}
+    <ui-section label='Belt ID'>
+      <ui-button icon='pencil' action='belt_id' params='{"belt_id": "input"}'>Set</ui-button>
+      <span>{{data.belt_id}}</span>
+    </ui-section>
+{{/if}}

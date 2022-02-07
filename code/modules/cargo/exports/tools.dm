@@ -111,6 +111,12 @@
 	unit_name = "rapid piping device"
 	export_types = list(/obj/item/pipe_dispenser)
 
+/datum/export/rbd
+	cost = 50
+	unit_name = "rapid belt device"
+	export_types = list(/obj/item/pipe_dispenser/belt)
+
+
 /datum/export/singulo //failsafe in case someone decides to ship a live singularity to CentCom without the corresponding bounty
 	cost = 1
 	unit_name = "singularity"

@@ -692,6 +692,14 @@
 	build_path = /obj/item/construction/rcd
 	category = list("hacked", "Construction")
 
+/datum/design/rbd
+	name = "Rapid Belt Dispenser (RBD)"
+	id = "rbd"
+	build_type = AUTOLATHE
+	materials = list(/datum/material/iron = 20000)
+	build_path = /obj/item/pipe_dispenser/belt
+	category = list("initial", "Construction")
+
 /datum/design/rpd
 	name = "Rapid Pipe Dispenser (RPD)"
 	id = "rpd"
@@ -864,7 +872,7 @@
 	name = "Conveyor Belt"
 	id = "conveyor_belt"
 	build_type = AUTOLATHE
-	materials = list(/datum/material/iron = 5000)
+	materials = list(/datum/material/iron = 0)
 	build_path = /obj/item/conveyor_construct
 	category = list("initial", "Construction")
 
@@ -872,7 +880,7 @@
 	name = "Conveyor Belt Switch"
 	id = "conveyor_switch"
 	build_type = AUTOLATHE
-	materials = list(/datum/material/iron = 450, /datum/material/glass = 190)
+	materials = list(/datum/material/iron = 0)
 	build_path = /obj/item/conveyor_switch_construct
 	category = list("initial", "Construction")
 
