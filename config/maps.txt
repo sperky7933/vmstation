@@ -19,6 +19,12 @@ map boxstation
 	votable
 endmap
 
+map ministation
+	#voteweight 1.5
+	votable
+	maxplayers 25
+endmap
+
 map metastation
 	#minplayers 25
 	#voteweight 0.5
