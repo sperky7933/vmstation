@@ -346,6 +346,14 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 		var/obj/item/conveyor_switch_construct/C = I
 		id = C.id
 
+/obj/item/conveyor_construct/proc/build(atom/A, mob/user, dir)
+	. = ..()
+	if(user.stat || !isfloorturf(A) || istype(A, /area/shuttle))
+		return
+	var/obj/machinery/conveyor/C = new/obj/machinery/conveyor(A, dir, id)
+	transfer_fingerprints_to(C)
+	qdel(src)
+
 /obj/item/conveyor_construct/afterattack(atom/A, mob/user, proximity)
 	. = ..()
 	if(!proximity || user.stat || !isfloorturf(A) || istype(A, /area/shuttle))
@@ -354,9 +362,8 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	if(A == user.loc)
 		to_chat(user, "<span class='warning'>You cannot place a conveyor belt under yourself!</span>")
 		return
-	var/obj/machinery/conveyor/C = new/obj/machinery/conveyor(A, cdir, id)
-	transfer_fingerprints_to(C)
-	qdel(src)
+	build(A, user, cdir)
+
 
 /obj/item/conveyor_switch_construct
 	name = "conveyor switch assembly"
@@ -375,9 +382,8 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 		C.id = id
 	to_chat(user, "<span class='notice'>You have linked all nearby conveyor belt assemblies to this switch.</span>")
 
-/obj/item/conveyor_switch_construct/afterattack(atom/A, mob/user, proximity)
-	. = ..()
-	if(!proximity || user.stat || !isfloorturf(A) || istype(A, /area/shuttle))
+/obj/item/conveyor_switch_construct/proc/build(atom/A, mob/user)
+	if(user.stat || !isfloorturf(A) || istype(A, /area/shuttle))
 		return
 	var/found = 0
 	for(var/obj/machinery/conveyor/C in view())
@@ -390,6 +396,13 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	var/obj/machinery/conveyor_switch/NC = new/obj/machinery/conveyor_switch(A, id)
 	transfer_fingerprints_to(NC)
 	qdel(src)
+
+/obj/item/conveyor_switch_construct/afterattack(atom/A, mob/user, proximity)
+	. = ..()
+	if(!proximity)
+		return
+	build(A, user)
+
 
 /obj/item/paper/guides/conveyor
 	name = "paper- 'Nano-it-up U-build series, #9: Build your very own conveyor belt, in SPACE'"
