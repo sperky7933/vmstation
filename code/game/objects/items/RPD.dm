@@ -7,6 +7,7 @@ RPD
 #define DISPOSALS_CATEGORY 1
 #define TRANSIT_CATEGORY 2
 #define PLUMBING_CATEGORY 3
+#define BELT_CATEGORY 4
 
 #define BUILD_MODE 1
 #define WRENCH_MODE 2
@@ -73,6 +74,12 @@ GLOBAL_LIST_INIT(transit_tube_recipes, list(
 	)
 ))
 
+GLOBAL_LIST_INIT(conveyor_belt_recipes, list(
+	"Conveyor belts" = list(
+		new /datum/pipe_info/belts("Conveyor Belt",					/obj/item/conveyor_construct, /obj/machinery/conveyor),
+		new /datum/pipe_info/belt_switch("Conveyor Belt Switch",		/obj/item/conveyor_switch_construct)
+	)
+))
 GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 	"Fluid Ducts" = list(
 		new /datum/pipe_info/plumbing("Duct",				/obj/machinery/duct, PIPE_ONEDIR),
@@ -180,6 +187,18 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 	if(dt == PIPE_UNARY_FLIPPABLE)
 		icon_state = "[icon_state]_preview"
 
+/datum/pipe_info/belt_switch/New(label, obj/path)
+	name = label
+	id = path
+	icon_state = initial(path.icon_state)
+	dirtype=PIPE_ONEDIR
+
+/datum/pipe_info/belts/New(label, obj/path, obj/iconpath)
+	name = label
+	id = path
+	icon_state = initial(iconpath.icon_state)
+	dirtype = PIPE_UNARY
+
 /datum/pipe_info/plumbing/New(label, obj/path, dt=PIPE_UNARY)
 	name = label
 	id = path
@@ -212,16 +231,19 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 	var/disposal_build_speed = 5
 	var/transit_build_speed = 5
 	var/plumbing_build_speed = 5
+	var/belt_build_speed = 5
 	var/destroy_speed = 5
 	var/paint_speed = 5
 	var/category = ATMOS_CATEGORY
 	var/piping_layer = PIPING_LAYER_DEFAULT
 	var/ducting_layer = DUCT_LAYER_DEFAULT
+	var/belt_id = "255"
 	var/datum/pipe_info/recipe
 	var/static/datum/pipe_info/first_atmos
 	var/static/datum/pipe_info/first_disposal
 	var/static/datum/pipe_info/first_transit
 	var/static/datum/pipe_info/first_plumbing
+	var/static/datum/pipe_info/first_belt
 	var/mode = BUILD_MODE | PAINT_MODE | DESTROY_MODE | WRENCH_MODE
 	var/locked = FALSE //wheter we can change categories. Useful for the plumber
 
@@ -276,6 +298,7 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 		"categories" = list(),
 		"selected_color" = paint_color,
 		"paint_colors" = GLOB.pipe_paint_colors,
+        "belt_id" = belt_id,
 		"mode" = mode,
 		"locked" = locked
 	)
@@ -290,6 +313,8 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 			recipes = GLOB.transit_tube_recipes
 		if(PLUMBING_CATEGORY)
 			recipes = GLOB.fluid_duct_recipes
+		if(BELT_CATEGORY)
+			recipes = GLOB.conveyor_belt_recipes
 	for(var/c in recipes)
 		var/list/cat = recipes[c]
 		var/list/r = list()
@@ -320,6 +345,8 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 					recipe = first_transit
 				if(PLUMBING_CATEGORY)
 					recipe = first_plumbing
+				if(BELT_CATEGORY)
+					recipe = first_belt
 			p_dir = NORTH
 			playeffect = FALSE
 		if("piping_layer")
@@ -331,7 +358,7 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 		if("pipe_type")
 			var/static/list/recipes
 			if(!recipes)
-				recipes = GLOB.disposal_pipe_recipes + GLOB.atmos_pipe_recipes + GLOB.transit_tube_recipes + GLOB.fluid_duct_recipes
+				recipes = GLOB.disposal_pipe_recipes + GLOB.atmos_pipe_recipes + GLOB.transit_tube_recipes + GLOB.fluid_duct_recipes + GLOB.conveyor_belt_recipes
 			recipe = recipes[params["category"]][text2num(params["pipe_type"])]
 			p_dir = NORTH
 		if("setdir")
@@ -346,6 +373,11 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 				mode &= ~n
 			else
 				mode |= n
+		if("belt_id")
+			var/new_id = input("Select a belt id (0-255):", name, belt_id) as num|null
+			if(!isnull(new_id) && !..())
+				belt_id = "[CLAMP(text2num(new_id), 0, 255)]"
+			playeffect = FALSE
 
 	if(playeffect)
 		spark_system.start()
@@ -368,12 +400,18 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 
 	. = FALSE
 
-	if((mode&DESTROY_MODE) && istype(A, /obj/item/pipe) || istype(A, /obj/structure/disposalconstruct) || istype(A, /obj/structure/c_transit_tube) || istype(A, /obj/structure/c_transit_tube_pod) || istype(A, /obj/item/pipe_meter))
+	if((mode&DESTROY_MODE) && istype(A, /obj/item/pipe) || istype(A, /obj/structure/disposalconstruct) || istype(A, /obj/structure/c_transit_tube) || istype(A, /obj/structure/c_transit_tube_pod) || istype(A, /obj/item/pipe_meter) || istype(A, /obj/item/conveyor_switch_construct) || istype(A, /obj/item/conveyor_construct))
 		to_chat(user, "<span class='notice'>You start destroying a pipe...</span>")
 		playsound(get_turf(src), 'sound/machines/click.ogg', 50, 1)
 		if(do_after(user, destroy_speed, target = A))
 			activate()
 			qdel(A)
+		return
+
+	if(category == BELT_CATEGORY && (istype(A, /obj/machinery/conveyor) || istype(A, /obj/machinery/conveyor_switch)))
+		to_chat(user, "<span class='notice'>You sync the [src]'s ID.</span>")
+		var/obj/item/conveyor_construct/D = A
+		belt_id = D.id
 		return
 
 	if((mode&PAINT_MODE))
@@ -503,6 +541,26 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 					D.add_fingerprint(usr)
 					if(mode & WRENCH_MODE)
 						D.wrench_act(user, src)
+			if(BELT_CATEGORY) //Making belts
+				if(!can_make_pipe)
+					return ..()
+				A = get_turf(A)
+				if(isclosedturf(A))
+					to_chat(user, "<span class='warning'>[src]'s error light flickers; there's something in the way!</span>")
+					return
+				to_chat(user, "<span class='notice'>You start building a conveyor belt...</span>")
+				playsound(get_turf(src), 'sound/machines/click.ogg', 50, 1)
+				if(do_after(user, belt_build_speed, target = A))
+					activate()
+					var/obj/item/conveyor_construct/D = new queued_p_type(A)
+					D.id = belt_id
+					if(mode & WRENCH_MODE)
+						if(recipe.type == /datum/pipe_info/belt_switch)
+							D.build(A, user)
+						else
+							D.build(A, user, queued_p_dir)
+					D.add_fingerprint(usr)
+					return
 
 			else
 				return ..()
@@ -526,6 +584,24 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 		first_plumbing = GLOB.fluid_duct_recipes[GLOB.fluid_duct_recipes[1]][1]
 
 	recipe = first_plumbing
+
+/obj/item/pipe_dispenser/belt
+	name = "Rapid Belt Device (RBD)"
+	desc = "It creates belts don't ask me how."
+	icon_state = "plumberer"
+	category = BELT_CATEGORY
+	locked = TRUE
+
+/obj/item/pipe_dispenser/belt/Initialize()
+	. = ..()
+	spark_system = new
+	spark_system.set_up(5, 0, src)
+	spark_system.attach(src)
+	if(!first_belt)
+		first_belt = GLOB.conveyor_belt_recipes[GLOB.conveyor_belt_recipes[1]][1]
+
+	recipe = first_belt
+
 
 #undef ATMOS_CATEGORY
 #undef DISPOSALS_CATEGORY
