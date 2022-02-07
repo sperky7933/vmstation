@@ -7,7 +7,7 @@
 	materials = list(/datum/material/iron = 16000, /datum/material/glass = 8000, /datum/material/diamond = 200, /datum/material/gold = 3000, /datum/material/silver = 3000, /datum/material/titanium = 16000)	//This expensive enough for you?
 	construction_time = 250
 	category = list("Equipment")
-	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/flightpack
 	name = "Flight Pack"
@@ -18,7 +18,7 @@
 	materials = list(/datum/material/iron = 16000, /datum/material/glass = 8000, /datum/material/diamond = 4000, /datum/material/gold = 12000, /datum/material/silver = 12000, /datum/material/silver = 20000, /datum/material/plasma = 16000, /datum/material/titanium = 16000)	//This expensive enough for you?
 	construction_time = 250
 	category = list("Equipment")
-	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/flightshoes
 	name = "Flight Shoes"
@@ -29,4 +29,4 @@
 	materials = list(/datum/material/iron = 5000, /datum/material/glass = 5000, /datum/material/gold = 1500, /datum/material/silver = 1500, /datum/material/plasma = 2000, /datum/material/titanium = 2000)
 	construction_time = 100
 	category = list("Equipment")
-	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
