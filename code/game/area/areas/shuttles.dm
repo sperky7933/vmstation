@@ -210,3 +210,6 @@
 
 /area/shuttle/caravan/freighter3
 	name = "Tiny Freighter"
+
+/area/shuttle/caravan/freighter4
+	name = "Merchant Freighter"
