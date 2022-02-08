@@ -1740,7 +1740,7 @@
 "Vd" = (/obj/machinery/computer/atmos_control/tank/toxin_tank{dir = 8},/turf/open/floor/plasteel,/area/engine/engineering)
 "Vg" = (/obj/machinery/status_display/evac{pixel_x = 32; pixel_y = -32},/obj/effect/turf_decal/tile/neutral{dir = 1},/obj/effect/turf_decal/tile/neutral,/obj/effect/turf_decal/tile/neutral{dir = 4},/obj/effect/turf_decal/tile/neutral{dir = 8},/turf/open/floor/plasteel/dark,/area/ai_monitored/turret_protected/aisat)
 "Vj" = (/obj/structure/closet/secure_closet/engineering_welding,/obj/machinery/atmospherics/pipe/simple/scrubbers,/turf/open/floor/plasteel,/area/engine/engineering)
-"Vp" = (/obj/effect/spawner/structure/window/plasma/reinforced,/turf/open/floor/plating,/area/engine/atmos)
+"Vp" = (/obj/effect/spawner/structure/window/plasma/reinforced,/obj/machinery/atmospherics/pipe/simple/supply/visible{dir = 8},/turf/open/floor/plating,/area/engine/atmos)
 "Vq" = (/obj/machinery/atmospherics/pipe/heat_exchanging/junction{dir = 4},/obj/effect/spawner/structure/window/plasma/reinforced,/obj/machinery/atmospherics/pipe/simple/orange/visible,/turf/open/floor/engine/vacuum,/area/engine/engineering)
 "Vv" = (/obj/effect/spawner/structure/window/plasma/reinforced,/obj/machinery/atmospherics/pipe/simple/yellow/visible{dir = 4},/turf/open/floor/plating,/area/engine/atmos)
 "VT" = (/obj/effect/turf_decal/tile/neutral{dir = 1},/obj/effect/turf_decal/tile/neutral,/obj/effect/turf_decal/tile/neutral{dir = 4},/obj/effect/turf_decal/tile/neutral{dir = 8},/turf/open/floor/plasteel/dark,/area/ai_monitored/turret_protected/aisat)
