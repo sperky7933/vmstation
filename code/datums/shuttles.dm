@@ -447,6 +447,10 @@
 	suffix = "box"
 	name = "supply shuttle (Box)"
 
+/datum/map_template/shuttle/cargo/mini
+	suffix = "mini"
+	name = "supply shuttle (Mini)"
+
 /datum/map_template/shuttle/cargo/kilo
 	suffix = "kilo"
 	name = "supply shuttle (Kilo)"
