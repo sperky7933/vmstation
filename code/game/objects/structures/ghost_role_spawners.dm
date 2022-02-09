@@ -210,7 +210,7 @@
 	death = FALSE
 	random = TRUE
 	mob_species = /datum/species/squid
-	flavour_text = "<span class='big bold'>You travel the stars looking for good deals and ways to get rich.</span><b>Money's been getting tight as you haven't heard from your fellow traders in some time."
+	flavour_text = "<span class='big bold'>You travel the stars looking for good deals and ways to get rich.</span> <b>Money's been getting tight as you haven't heard from your fellow traders in some time."
 	assignedrole = "Space Merchant"
 
 /datum/outfit/merchant
