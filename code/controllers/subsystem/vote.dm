@@ -130,9 +130,7 @@ SUBSYSTEM_DEF(vote)
 			if("gamemode")
 				if(GLOB.master_mode != .)
 					SSticker.save_mode(.)
-					if(SSticker.HasRoundStarted())
-						restart = 1
-					else
+					if(!SSticker.HasRoundStarted())
 						GLOB.master_mode = .
 			if("map")
 				SSmapping.changemap(global.config.maplist[.])
