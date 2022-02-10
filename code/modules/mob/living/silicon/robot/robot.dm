@@ -1126,7 +1126,7 @@
 
 /mob/living/silicon/robot/shell
 	shell = TRUE
-	cell = null
+	cell = /obj/item/stock_parts/cell/high
 
 /mob/living/silicon/robot/MouseDrop_T(mob/living/M, mob/living/user)
 	. = ..()
