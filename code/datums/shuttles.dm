@@ -113,6 +113,14 @@
 	port_id = "ferry"
 	name = "Base Shuttle Template (Ferry)"
 
+/datum/map_template/shuttle/spawn/merchant
+	name = "Merchant Ship"
+	suffix = "merchant"
+	can_be_bought = FALSE
+
+/datum/map_template/shuttle/spawn
+	port_id = "spawn"
+
 /datum/map_template/shuttle/whiteship
 	port_id = "whiteship"
 

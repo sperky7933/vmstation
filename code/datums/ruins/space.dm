@@ -269,6 +269,12 @@
 	name = "Whiteship Dock"
 	description = "An abandoned but functional vessel parked in deep space, ripe for the taking."
 
+/datum/map_template/ruin/space/merchantdock
+	id = "merchantdock"
+	suffix = "merchantdock.dmm"
+	name = "Merchant Dock"
+	description = "An active merchant vessel."
+
 /datum/map_template/ruin/space/cat_experiments
 	id = "meow"
 	suffix = "mrow_thats_right.dmm"
