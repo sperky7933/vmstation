@@ -249,10 +249,12 @@
 	icon_state = "bulb"
 	base_state = "bulb"
 	fitting = "bulb"
-	if(!brightness)
-		brightness = 4
+	brightness = 4
 	desc = "A small lighting fixture."
 	light_type = /obj/item/light/bulb
+
+/obj/machinery/light/small/dim
+	brightness = 2
 
 /obj/machinery/light/small/broken
 	status = LIGHT_BROKEN
