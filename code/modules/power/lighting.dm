@@ -253,9 +253,6 @@
 	desc = "A small lighting fixture."
 	light_type = /obj/item/light/bulb
 
-/obj/machinery/light/small/dim
-	brightness = 2
-
 /obj/machinery/light/small/broken
 	status = LIGHT_BROKEN
 	icon_state = "bulb-broken"
