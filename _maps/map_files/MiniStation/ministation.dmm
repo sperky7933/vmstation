@@ -739,7 +739,7 @@
 "oz" = (/obj/structure/toilet{pixel_y = 8},/obj/item/razor,/obj/machinery/light/small{brightness = 3; dir = 8},/turf/open/floor/plasteel/freezer,/area/hallway/primary/central)
 "oA" = (/obj/machinery/suit_storage_unit/captain,/turf/open/floor/plasteel,/area/bridge)
 "oB" = (/obj/structure/closet/secure_closet/captains,/turf/open/floor/plasteel,/area/bridge)
-"oC" = (/obj/structure/bodycontainer/morgue,/turf/open/floor/plasteel/dark,/area/medical/medbay)
+"oC" = (/obj/structure/bodycontainer/morgue{dir = 8},/turf/open/floor/plasteel/dark,/area/medical/medbay)
 "oD" = (/obj/structure/bodycontainer/crematorium{dir = 1; id = "crematoriumChapel"},/obj/machinery/button/crematorium{id = "crematoriumChapel"; pixel_x = 26; pixel_y = 2; req_access_txt = "27"},/turf/open/floor/plasteel/dark,/area/medical/medbay)
 "oE" = (/obj/structure/sink{dir = 8; pixel_x = -12; pixel_y = 2},/turf/open/floor/plasteel/white,/area/medical/medbay)
 "oF" = (/obj/machinery/light,/obj/machinery/iv_drip,/turf/open/floor/plasteel/white,/area/medical/medbay)
