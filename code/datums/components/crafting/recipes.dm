@@ -329,11 +329,11 @@
 	result = /obj/item/gun/ballistic/doublebarrel/improvisedshotpistol
 	reqs = list(/obj/item/assembly/igniter = 1,
 				/obj/item/grenade/chem_grenade = 1,
-				/obj/item/stack/cable_coil = 2,
-				/obj/item/stack/sheet/metal = 2,
+				/obj/item/stack/cable_coil = 1,
+				/obj/item/stack/sheet/metal = 1,
 				/obj/item/ammo_casing/shotgun/improvised = 1)
 	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
-	time = 200
+	time = 100
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
