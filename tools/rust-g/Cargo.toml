@@ -1,0 +1,78 @@
+[package]
+name = "rust-g"
+edition = "2021"
+version = "1.0.2"
+authors = ["Bjorn Neergaard <bjorn@neersighted.com>", "Tad Hardesty <tad@platymuus.com>", "rust-g maintainer team"]
+repository = "https://github.com/tgstation/rust-g"
+license = "MIT"
+description = "Offloaded task library for the /tg/ Space Station 13 codebase"
+
+[lib]
+crate-type = ["cdylib"]
+
+[profile.release]
+opt-level = 3
+codegen-units = 1
+lto = true
+
+[dependencies]
+thiserror = "1.0"
+flume = { version = "0.10", optional = true }
+chrono = { version = "0.4", optional = true }
+base64 = { version = "0.13", optional = true}
+md-5 = { version = "0.10", optional = true }
+twox-hash = { version = "1.6", optional = true }
+const-random = { version = "0.1.13", optional = true }
+sha-1 = { version = "0.10", optional = true }
+sha2 = { version = "0.10", optional = true }
+hex = { version = "0.4", optional = true }
+percent-encoding = { version = "2.1", optional = true }
+url-dep = { version = "2.1", package = "url", optional = true }
+png = { version = "0.17", optional = true }
+image = { version = "0.24", optional = true }
+git2 = { version = "0.14", optional = true, default-features = false }
+noise = { version = "0.7", optional = true}
+redis = { version = "0.21", optional = true }
+reqwest = { version = "0.11", optional = true, default-features = false, features = ["blocking", "rustls-tls"] }
+serde = { version = "1.0", optional = true, features = ["derive"] }
+serde_json = { version = "1.0", optional = true }
+lazy_static = { version = "1.4", optional = true }
+once_cell = { version = "1.4", optional = true }
+mysql = { version = "22.2", optional = true }
+dashmap = { version = "5.3", optional = true }
+zip = { version = "0.6", optional = true }
+rand = {version = "0.8", optional = true}
+toml-dep = { version = "0.5.8", package="toml", optional = true }
+aho-corasick = { version = "0.7.18", optional = true}
+rayon = { version = "1.5", optional = true}
+dbpnoise = { version = "0.1.2", optional = true}
+
+[features]
+default = ["acreplace", "cellularnoise", "dmi", "file", "git", "http", "json", "log", "noise", "sql", "time", "toml", "url"]
+
+# default features
+acreplace = ["aho-corasick"]
+cellularnoise = ["rand","rayon"]
+dmi = ["png", "image"]
+file = []
+git = ["git2", "chrono"]
+http = ["reqwest", "serde", "serde_json", "once_cell", "jobs"]
+json = ["serde", "serde_json"]
+log = ["chrono"]
+sql = ["mysql", "serde", "serde_json", "once_cell", "dashmap", "jobs"]
+time = []
+toml = ["serde", "serde_json", "toml-dep"]
+url = ["url-dep", "percent-encoding"]
+
+# additional features
+batchnoise = ["dbpnoise"]
+hash = ["base64", "const-random", "md-5", "hex", "sha-1", "sha2",  "twox-hash", "serde", "serde_json"]
+redis_pubsub = ["flume", "redis", "serde", "serde_json"]
+unzip = ["zip", "jobs"]
+worleynoise = ["rand","rayon"]
+
+# internal feature-like things
+jobs = ["flume"]
+
+[dev-dependencies]
+regex = "1"
