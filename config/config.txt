@@ -239,7 +239,7 @@ FORUMURL https://boards.4channel.org/vm/ss13
 # RULESURL http://www.tgstation13.org/wiki/Rules
 
 ## Github address
-GITHUBURL https://github.com/not-a-furry/vmstation
+GITHUBURL https://github.com/sperky7933/vmstation
 
 ## Round specific stats address
 ## Link to round specific parsed logs; IE statbus. It is appended with the RoundID automatically by ticker/Reboot()
