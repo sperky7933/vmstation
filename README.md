@@ -1,16 +1,12 @@
 ## /vm/station codebase
 
 **Website:** https://boards.4channel.org/vm/ss13
-**Code:** https://github.com/not-a-furry/vmstation
+**Code:** https://github.com/sperky7933/vmstation
 **Wiki** find out ic
 **IRC:** TODO
 
  
 ## DOWNLOADING
-
-QUESTIONS ON DATABASE/HOSTING/DOWNLOADING/ETC?
-DM ME ON DISCORD pain#6519
-OR ON GITHUB, not-a-furry
 
 There are a number of ways to download the source code. Some are described here, an alternative all-inclusive guide is also located at https://www.tgstation13.org/wiki/Downloading_the_source_code
 
