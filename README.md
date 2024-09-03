@@ -2,7 +2,7 @@
 
 **Website:** https://boards.4channel.org/vm/ss13
 **Code:** https://github.com/sperky7933/vmstation
-**Wiki** find out ic
+**Wiki** https://web.archive.org/web/20190910043626/https://tgstation13.org/wiki/Main_Page
 **IRC:** TODO
 
  

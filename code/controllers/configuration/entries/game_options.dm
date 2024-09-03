@@ -52,6 +52,8 @@
 
 /datum/config_entry/flag/sec_start_brig	//makes sec start in brig instead of dept sec posts
 
+/datum/config_entry/flag/force_random_names_and_appearances
+
 /datum/config_entry/flag/force_random_names
 
 /datum/config_entry/flag/humans_need_surnames

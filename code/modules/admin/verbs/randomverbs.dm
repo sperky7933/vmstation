@@ -773,9 +773,9 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		to_chat(usr, "Nope you can't do this, the game's already started. This only works before rounds!")
 		return
 
-	var/frn = CONFIG_GET(flag/force_random_names)
+	var/frn = CONFIG_GET(flag/force_random_names_and_appearances)
 	if(frn)
-		CONFIG_SET(flag/force_random_names, FALSE)
+		CONFIG_SET(flag/force_random_names_and_appearances, FALSE)
 		message_admins("Admin [key_name_admin(usr)] has disabled \"Everyone is Special\" mode.")
 		to_chat(usr, "Disabled.")
 		return
@@ -793,8 +793,40 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	to_chat(usr, "<i>Remember: you can always disable the randomness by using the verb again, assuming the round hasn't started yet</i>.")
 
-	CONFIG_SET(flag/force_random_names, TRUE)
+	CONFIG_SET(flag/force_random_names_and_appearances, TRUE)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Make Everyone Random") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/client/proc/randomized_names()
+	set category = "Fun"
+	set name = "Make Everyones Name Random"
+	set desc = "Make everyone have a random name. You can only use this before rounds!"
+
+	if(SSticker.HasRoundStarted())
+		to_chat(usr, "Nope you can't do this, the game's already started. This only works before rounds!")
+		return
+
+	var/frn = CONFIG_GET(flag/force_random_names)
+	if(frn)
+		CONFIG_SET(flag/force_random_names, FALSE)
+		message_admins("Admin [key_name_admin(usr)] has disabled \"Randomized Names\" mode.")
+		to_chat(usr, "Disabled.")
+		return
+
+
+	var/notifyplayers = alert(src, "Do you want to notify the players?", "Options", "Yes", "No", "Cancel")
+	if(notifyplayers == "Cancel")
+		return
+
+	log_admin("Admin [key_name(src)] has forced the players to have random appearances.")
+	message_admins("Admin [key_name_admin(usr)] has forced the players to have random appearances.")
+
+	if(notifyplayers == "Yes")
+		to_chat(world, "<span class='adminnotice'>Admin [usr.key] has forced the players to have completely random names!</span>")
+
+	to_chat(usr, "<i>Remember: you can always disable the randomness by using the verb again, assuming the round hasn't started yet</i>.")
+
+	CONFIG_SET(flag/force_random_names, TRUE)
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Randomized Names") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
 /client/proc/toggle_random_events()

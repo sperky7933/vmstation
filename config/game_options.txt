@@ -52,6 +52,9 @@ MULTIPLICATIVE_MOVESPEED /mob/living/simple_animal 1
 #HUMANS_NEED_SURNAMES
 
 ## If uncommented, this forces all players to use random names !and appearances!.
+#FORCE_RANDOM_NAMES_AND_APPEARANCES
+
+## If uncommented, this forces all players to use random names
 #FORCE_RANDOM_NAMES
 
 ## Unhash this to turn on automatic reopening of a player's job if they suicide at roundstart

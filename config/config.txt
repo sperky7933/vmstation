@@ -233,7 +233,7 @@ CHECK_RANDOMIZER
 FORUMURL https://boards.4channel.org/vm/ss13
 
 ## Wiki address
-WIKIURL http://www.tgstation13.org/wiki
+WIKIURL https://web.archive.org/web/20190910043626/https://tgstation13.org/wiki/Main_Page
 
 ## Github address
 GITHUBURL https://github.com/sperky7933/vmstation
@@ -273,7 +273,7 @@ GITHUBURL https://github.com/sperky7933/vmstation
 #FORBID_SINGULO_POSSESSION
 
 ## Uncomment to show a popup 'reply to' window to every non-admin that receives an adminPM.
-## The intention is to make adminPMs more visible. (although I fnd popups annoying so this defaults to off)
+## The intention is to make adminPMs more visible. (although I find popups annoying so this defaults to off)
 #POPUP_ADMIN_PM
 
 ## Uncomment to allow special 'Easter-egg' events on special holidays such as seasonal holidays and stuff like 'Talk Like a Pirate Day' :3 YAARRR
@@ -334,7 +334,7 @@ NOTIFY_NEW_PLAYER_AGE 0
 
 ## Notify admins when a player connects if their byond account was created in the last X days
 ## Requires database
-NOTIFY_NEW_PLAYER_ACCOUNT_AGE 1
+NOTIFY_NEW_PLAYER_ACCOUNT_AGE 30
 
 ## Notify the irc channel when a new player makes their first connection
 ##	Requres database
