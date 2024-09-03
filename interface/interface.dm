@@ -28,17 +28,13 @@
 	return
 
 /client/verb/rules()
-	set name = "rules"
-	set desc = "Show Server Rules."
-	set hidden = 1
-	var/rulesurl = CONFIG_GET(string/rulesurl)
-	if(rulesurl)
-		if(alert("This will open the rules in your browser. Are you sure?",,"Yes","No")!="Yes")
-			return
-		src << link(rulesurl)
-	else
-		to_chat(src, "<span class='danger'>The rules URL is not set in the server configuration.</span>")
-	return
+    set name = "rules"
+    set category = "OOC"
+    var/datum/asset/rules = get_asset_datum(/datum/asset/simple/rules)
+    if (rules)
+        rules.send(src)
+    src << browse('html/rules.html', "window=changes;size=675x650")
+    winset(src, "infowindow.rules", "font-style=;")
 
 /client/verb/github()
 	set name = "github"

@@ -1833,68 +1833,71 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	generate_data_info(data)
 
 /datum/reagent/consumable/ethanol/fruit_wine/proc/generate_data_info(list/data)
-	var/minimum_percent = 0.15 //Percentages measured between 0 and 1.
-	var/list/primary_tastes = list()
-	var/list/secondary_tastes = list()
-	glass_name = "glass of [name]"
-	glass_desc = description
-	for(var/taste in tastes)
-		switch(tastes[taste])
-			if(minimum_percent*2 to INFINITY)
-				primary_tastes += taste
-			if(minimum_percent to minimum_percent*2)
-				secondary_tastes += taste
+    var/minimum_percent = 0.15 // Percentages measured between 0 and 1.
+    var/list/primary_tastes = list()
+    var/list/secondary_tastes = list()
+    glass_name = "glass of [name]"
+    glass_desc = description
+    
+    // Process tastes
+    for (var/taste in tastes)
+        if (tastes[taste] >= minimum_percent * 2) // Primary tastes
+            primary_tastes += taste
+        else if (tastes[taste] >= minimum_percent) // Secondary tastes
+            secondary_tastes += taste
 
-	var/minimum_name_percent = 0.35
-	name = ""
-	var/list/names_in_order = sortTim(names, /proc/cmp_numeric_dsc, TRUE)
-	var/named = FALSE
-	for(var/fruit_name in names)
-		if(names[fruit_name] >= minimum_name_percent)
-			name += "[fruit_name] "
-			named = TRUE
-	if(named)
-		name += "wine"
-	else
-		name = "mixed [names_in_order[1]] wine"
+    var/minimum_name_percent = 0.35
+    name = ""
+    var/list/names_in_order = sortTim(names, /proc/cmp_numeric_dsc, TRUE)
+    var/named = FALSE
+    
+    for (var/fruit_name in names)
+        if (names[fruit_name] >= minimum_name_percent)
+            name += "[fruit_name] "
+            named = TRUE
+    
+    if (named)
+        name += "wine"
+    else
+        name = "mixed [names_in_order[1]] wine"
 
-	var/alcohol_description
-	switch(boozepwr)
-		if(120 to INFINITY)
-			alcohol_description = "suicidally strong"
-		if(90 to 120)
-			alcohol_description = "rather strong"
-		if(70 to 90)
-			alcohol_description = "strong"
-		if(40 to 70)
-			alcohol_description = "rich"
-		if(20 to 40)
-			alcohol_description = "mild"
-		if(0 to 20)
-			alcohol_description = "sweet"
-		else
-			alcohol_description = "watery" //How the hell did you get negative boozepwr?
+    var/alcohol_description
+    if (boozepwr >= 120)
+        alcohol_description = "suicidally strong"
+    else if (boozepwr >= 90)
+        alcohol_description = "rather strong"
+    else if (boozepwr >= 70)
+        alcohol_description = "strong"
+    else if (boozepwr >= 40)
+        alcohol_description = "rich"
+    else if (boozepwr >= 20)
+        alcohol_description = "mild"
+    else if (boozepwr >= 0)
+        alcohol_description = "sweet"
+    else
+        alcohol_description = "watery" // How the hell did you get negative boozepwr?
 
-	var/list/fruits = list()
-	if(names_in_order.len <= 3)
-		fruits = names_in_order
-	else
-		for(var/i in 1 to 3)
-			fruits += names_in_order[i]
-		fruits += "other plants"
-	var/fruit_list = english_list(fruits)
-	description = "A [alcohol_description] wine brewed from [fruit_list]."
+    var/list/fruits = list()
+    if (names_in_order.len <= 3)
+        fruits = names_in_order
+    else
+        for (var/i in 1 to 3)
+            fruits += names_in_order[i]
+        fruits += "other plants"
+    var/fruit_list = english_list(fruits)
+    description = "A [alcohol_description] wine brewed from [fruit_list]."
 
-	var/flavor = ""
-	if(!primary_tastes.len)
-		primary_tastes = list("[alcohol_description] alcohol")
-	flavor += english_list(primary_tastes)
-	if(secondary_tastes.len)
-		flavor += ", with a hint of "
-		flavor += english_list(secondary_tastes)
-	taste_description = flavor
-	if(holder.my_atom)
-		holder.my_atom.on_reagent_change()
+    var/flavor = ""
+    if (!primary_tastes.len)
+        primary_tastes = list("[alcohol_description] alcohol")
+    flavor += english_list(primary_tastes)
+    if (secondary_tastes.len)
+        flavor += ", with a hint of "
+        flavor += english_list(secondary_tastes)
+    taste_description = flavor
+    
+    if (holder.my_atom)
+        holder.my_atom.on_reagent_change()
 
 
 /datum/reagent/consumable/ethanol/champagne //How the hell did we not have champagne already!?

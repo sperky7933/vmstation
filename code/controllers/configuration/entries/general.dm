@@ -204,9 +204,6 @@
 /datum/config_entry/string/forumurl
 	config_entry_value = "http://tgstation13.org/phpBB/index.php"
 
-/datum/config_entry/string/rulesurl
-	config_entry_value = "http://www.tgstation13.org/wiki/Rules"
-
 /datum/config_entry/string/githuburl
 	config_entry_value = "https://www.github.com/tgstation/-tg-station"
 

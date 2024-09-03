@@ -3,13 +3,4 @@
 <h1>Welcome to VMstation!</h1>
 
 <br><b>Website: 	<a href="http://4chan.org/vm/ss13">Click Me!</a></b>
-<br><b>Rules:</b>
-<br>
-<ul>
-    <li>Don't be an idiot. This server is very lightly moderated, but that doesn't mean being an autist won't result in a ban. That means if it isn't listed here but it's stupid you'll still get banned.</li>
-    <li>This is a roleplaying game. You are also a paid employee of Nanotrasen and should do your job.</li>
-    <li>No griefing or trolling.</li>
-    <li>Do not spam the chat, OOC or in-game communications.</li>
-    <li>Do not use hacks, cheats, or any third-party software that gives you an unfair advantage.</li>
-    <li>No ERP or degeneracy. This is a Christian server and we do not tolerate that stuff. Anime people are okay tho.</li>
-</ul>
+<br><b>This server is running on modified 2019 /tg/station code. Remember to read the rules and enjoy your stay!</b>

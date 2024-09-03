@@ -145,10 +145,9 @@ GLOBAL_PROTECT(exp_to_update)
 		L.update_exp_list(mins,ann)
 
 /datum/controller/subsystem/blackbox/proc/update_exp_db()
-	set waitfor = FALSE
-	var/list/old_minutes = GLOB.exp_to_update
-	GLOB.exp_to_update = null
- 	SSdbcore.MassInsert(format_table_name("role_time"), old_minutes, duplicate_key = "ON DUPLICATE KEY UPDATE minutes = minutes + VALUES(minutes)")
+    set waitfor = FALSE
+    GLOB.exp_to_update = null
+    SSdbcore.MassInsert(format_table_name("role_time"), GLOB.exp_to_update, duplicate_key = "ON DUPLICATE KEY UPDATE minutes = minutes + VALUES(minutes)")
 //resets a client's exp to what was in the db.
 /client/proc/set_exp_from_db()
 	if(!CONFIG_GET(flag/use_exp_tracking))

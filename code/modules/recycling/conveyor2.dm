@@ -347,12 +347,11 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 		id = C.id
 
 /obj/item/conveyor_construct/proc/build(atom/A, mob/user, dir)
-	. = ..()
-	if(user.stat || !isfloorturf(A) || istype(A, /area/shuttle))
-		return
-	var/obj/machinery/conveyor/C = new/obj/machinery/conveyor(A, dir, id)
-	transfer_fingerprints_to(C)
-	qdel(src)
+    if(user.stat || !isfloorturf(A) || istype(A, /area/shuttle))
+        return
+    var/obj/machinery/conveyor/C = new/obj/machinery/conveyor(A, dir, id)
+    transfer_fingerprints_to(C)
+    qdel(src)
 
 /obj/item/conveyor_construct/afterattack(atom/A, mob/user, proximity)
 	. = ..()
