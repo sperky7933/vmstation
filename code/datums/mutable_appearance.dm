@@ -14,7 +14,7 @@
 // Helper similar to image()
 proc/mutable_appearance(icon_path, icon_state = "", layer = FLOAT_LAYER, plane = FLOAT_PLANE)
     var/mutable_appearance/MA = new()
-    MA.icon = icon_path //set the built-in icon variable
+    MA.icon = icon_path
     MA.icon_state = icon_state
     MA.layer = layer
     MA.plane = plane

@@ -39,4 +39,4 @@
 #endif
 
 /// Gets the version of rust_g
-/proc/rustg_get_version() return call(RUST_G, "get_version")()
+/proc/rustg_get_version() return RUSTG_CALL(RUST_G, "get_version")()
