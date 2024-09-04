@@ -288,7 +288,7 @@
 				return
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Monkeyize All Humans"))
 			for(var/mob/living/carbon/human/H in GLOB.carbon_list)
-				INVOKE_ASYNC(H, /mob/living/carbon.proc/monkeyize)
+				INVOKE_ASYNC(H, TYPE_PROC_REF(/mob/living/carbon, monkeyize))
 			ok = 1
 
 		if("allspecies")

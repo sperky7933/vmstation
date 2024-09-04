@@ -511,7 +511,7 @@
 		cooldown = COOLDOWN_MEME
 		for(var/V in listeners)
 			var/mob/living/L = V
-			addtimer(CALLBACK(L, /mob/living/.proc/emote, "dance"), 5 * i)
+			addtimer(CALLBACK(L, TYPE_PROC_REF(/mob/living/, emote), "dance"), 5 * i)
 			i++
 
 	//JUMP
@@ -521,7 +521,7 @@
 			var/mob/living/L = V
 			if(prob(25))
 				addtimer(CALLBACK(L, /atom/movable/proc/say, "HOW HIGH?!!"), 5 * i)
-			addtimer(CALLBACK(L, /mob/living/.proc/emote, "jump"), 5 * i)
+			addtimer(CALLBACK(L, TYPE_PROC_REF(/mob/living/, emote), "jump"), 5 * i)
 			i++
 
 	//SALUTE
@@ -529,7 +529,7 @@
 		cooldown = COOLDOWN_MEME
 		for(var/V in listeners)
 			var/mob/living/L = V
-			addtimer(CALLBACK(L, /mob/living/.proc/emote, "salute"), 5 * i)
+			addtimer(CALLBACK(L, TYPE_PROC_REF(/mob/living/, emote), "salute"), 5 * i)
 			i++
 
 	//PLAY DEAD
@@ -537,7 +537,7 @@
 		cooldown = COOLDOWN_MEME
 		for(var/V in listeners)
 			var/mob/living/L = V
-			addtimer(CALLBACK(L, /mob/living/.proc/emote, "deathgasp"), 5 * i)
+			addtimer(CALLBACK(L, TYPE_PROC_REF(/mob/living/, emote), "deathgasp"), 5 * i)
 			i++
 
 	//PLEASE CLAP
@@ -545,7 +545,7 @@
 		cooldown = COOLDOWN_MEME
 		for(var/V in listeners)
 			var/mob/living/L = V
-			addtimer(CALLBACK(L, /mob/living/.proc/emote, "clap"), 5 * i)
+			addtimer(CALLBACK(L, TYPE_PROC_REF(/mob/living/, emote), "clap"), 5 * i)
 			i++
 
 	//HONK

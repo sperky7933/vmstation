@@ -20,7 +20,7 @@
 /obj/singularity/boh_tear/Initialize()
 	. = ..()
 	old_loc = loc
-	addtimer(CALLBACK(src, /atom/movable.proc/moveToNullspace), 5 SECONDS) // vanishes after 5 seconds
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, moveToNullspace)), 5 SECONDS) // vanishes after 5 seconds
 	QDEL_IN(src, 10 MINUTES)
 
 /// Retrieve all the items consumed
