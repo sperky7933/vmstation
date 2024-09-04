@@ -134,7 +134,7 @@
 	to_chat(user, "<span class='notice'>You begin to awaken the Killer Tomato...</span>")
 	awakening = 1
 
-	addtimer(CALLBACK(src, .proc/awaken), 3 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(awaken)), 3 SECONDS)
 
 /obj/item/reagent_containers/food/snacks/grown/tomato/killer/proc/awaken()
 	if(QDELETED(src))

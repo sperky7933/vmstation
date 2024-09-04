@@ -57,7 +57,7 @@
 				"<span class='userdanger'>A massive brass spike rips through your chassis and bursts into shrapnel in your casing!</span>")
 				squirrel.adjustBruteLoss(50)
 				squirrel.Stun(20)
-				addtimer(CALLBACK(src, .proc/take_damage, max_integrity), 1)
+				addtimer(CALLBACK(src, PROC_REF(take_damage), max_integrity), 1)
 		else
 			squirrel.visible_message("<span class='boldwarning'>A massive brass spike erupts from the ground, impaling [squirrel]!</span>", \
 			"<span class='userdanger'>A massive brass spike rams through your chest, hoisting you into the air!</span>")

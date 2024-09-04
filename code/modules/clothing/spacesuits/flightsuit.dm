@@ -109,7 +109,7 @@
 		wearer = changeto
 		LAZYADD(wearer.user_movement_hooks, src)
 		cached_pull = changeto.pulling
-		RegisterSignal(wearer, COMSIG_MOVABLE_MOVED, .proc/on_mob_move)
+		RegisterSignal(wearer, COMSIG_MOVABLE_MOVED, PROC_REF(on_mob_move))
 
 /obj/item/flightpack/Initialize()
 	ion_trail = new
@@ -534,7 +534,7 @@
 			return TRUE
 		usermessage("Warning: Velocity too high to safely disengage. Retry to confirm emergency shutoff.", "boldwarning")
 		override_safe = TRUE
-		addtimer(CALLBACK(src, .proc/enable_safe), 50)
+		addtimer(CALLBACK(src, PROC_REF(enable_safe)), 50)
 		return FALSE
 
 /obj/item/flightpack/proc/enable_safe()
