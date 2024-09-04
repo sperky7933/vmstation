@@ -176,7 +176,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 
 				results[++results.len] = list("name" = name, "assignment" = assignment, "ijob" = ijob, "life_status" = life_status, "oxydam" = oxydam, "toxdam" = toxdam, "burndam" = burndam, "brutedam" = brutedam, "area" = area, "pos_x" = pos_x, "pos_y" = pos_y, "can_track" = H.can_track(null))
 
-	data_by_z["[z]"] = sortTim(results,/proc/sensor_compare)
+	data_by_z["[z]"] = sortTim(results,GLOBAL_PROC_REF(sensor_compare))
 	last_update["[z]"] = world.time
 
 	return results
