@@ -161,8 +161,11 @@
 	if(datum_flags & DF_VAR_EDITED)
 		return WrapAdminProcCall(object, delegate, calling_arguments)
 	if (object == GLOBAL_PROC)
-		return call(delegate)(arglist(calling_arguments))
-	return call(object, delegate)(arglist(calling_arguments))
+		if (delegate == "qdel")
+			qdel(arglist(calling_arguments))  //Direct call to qdel with the argument list
+			return
+		else
+			return call(delegate)(arglist(calling_arguments))  //Otherwise normal call (because qdel cannot be called for some reason)
 
 /**
 	Helper datum for the select callbacks proc
