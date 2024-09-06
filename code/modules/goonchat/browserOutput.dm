@@ -258,11 +258,11 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 		// url_encode it TWICE, this way any UTF-8 characters are able to be decoded by the Javascript.
 		C << output(url_encode(url_encode(message)), "browseroutput:output")
 
-/proc/to_chat(target, message, handle_whitespace = TRUE)
+/proc/to_chat(target, message, confidential = TRUE)
 	if(Master.current_runlevel == RUNLEVEL_INIT || !SSchat?.initialized)
-		to_chat_immediate(target, message, handle_whitespace)
+		to_chat_immediate(target, message, confidential)
 		return
-	SSchat.queue(target, message, handle_whitespace)
+	SSchat.queue(target, message, confidential)
 
 /datum/chatOutput/proc/swaptolightmode() //Dark mode light mode stuff. Yell at KMC if this breaks! (See darkmode.dm for documentation)
 	owner.force_white_theme()

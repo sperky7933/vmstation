@@ -63,11 +63,11 @@
 
 	//TODO OMINOUS MACHINE SOUNDS
 	set_busy(TRUE, "Initializing injection protocol...", "[initial(icon_state)]_raising")
-	addtimer(CALLBACK(src, .proc/set_busy, TRUE, "Analyzing host bio-structure...", "[initial(icon_state)]_active"),20)
-	addtimer(CALLBACK(src, .proc/set_busy, TRUE, "Priming nanites...", "[initial(icon_state)]_active"),40)
-	addtimer(CALLBACK(src, .proc/set_busy, TRUE, "Injecting...", "[initial(icon_state)]_active"),70)
-	addtimer(CALLBACK(src, .proc/set_busy, TRUE, "Activating nanites...", "[initial(icon_state)]_falling"),110)
-	addtimer(CALLBACK(src, .proc/complete_injection, locked_state),130)
+	addtimer(CALLBACK(src, PROC_REF(set_busy), TRUE, "Analyzing host bio-structure...", "[initial(icon_state)]_active"),20)
+	addtimer(CALLBACK(src, PROC_REF(set_busy), TRUE, "Priming nanites...", "[initial(icon_state)]_active"),40)
+	addtimer(CALLBACK(src, PROC_REF(set_busy), TRUE, "Injecting...", "[initial(icon_state)]_active"),70)
+	addtimer(CALLBACK(src, PROC_REF(set_busy), TRUE, "Activating nanites...", "[initial(icon_state)]_falling"),110)
+	addtimer(CALLBACK(src, PROC_REF(complete_injection), locked_state),130)
 
 /obj/machinery/nanite_chamber/proc/complete_injection(locked_state)
 	//TODO MACHINE DING
@@ -90,9 +90,9 @@
 
 	//TODO COMPUTERY MACHINE SOUNDS
 	set_busy(TRUE, "Initializing installation protocol...", "[initial(icon_state)]_raising")
-	addtimer(CALLBACK(src, .proc/set_busy, TRUE, "Connecting to nanite framework...", "[initial(icon_state)]_active"),20)
-	addtimer(CALLBACK(src, .proc/set_busy, TRUE, "Installing program...", "[initial(icon_state)]_falling"),35)
-	addtimer(CALLBACK(src, .proc/complete_installation, locked_state, NP),55)
+	addtimer(CALLBACK(src, PROC_REF(set_busy), TRUE, "Connecting to nanite framework...", "[initial(icon_state)]_active"),20)
+	addtimer(CALLBACK(src, PROC_REF(set_busy), TRUE, "Installing program...", "[initial(icon_state)]_falling"),35)
+	addtimer(CALLBACK(src, PROC_REF(complete_installation), locked_state, NP),55)
 
 /obj/machinery/nanite_chamber/proc/complete_installation(locked_state, datum/nanite_program/NP)
 	//TODO MACHINE DING
@@ -116,9 +116,9 @@
 
 	//TODO COMPUTERY MACHINE SOUNDS
 	set_busy(TRUE, "Initializing uninstallation protocol...", "[initial(icon_state)]_raising")
-	addtimer(CALLBACK(src, .proc/set_busy, TRUE, "Connecting to nanite framework...", "[initial(icon_state)]_active"),20)
-	addtimer(CALLBACK(src, .proc/set_busy, TRUE, "Uninstalling program...", "[initial(icon_state)]_falling"),35)
-	addtimer(CALLBACK(src, .proc/complete_uninstallation, locked_state, NP),55)
+	addtimer(CALLBACK(src, PROC_REF(set_busy), TRUE, "Connecting to nanite framework...", "[initial(icon_state)]_active"),20)
+	addtimer(CALLBACK(src, PROC_REF(set_busy), TRUE, "Uninstalling program...", "[initial(icon_state)]_falling"),35)
+	addtimer(CALLBACK(src, PROC_REF(complete_uninstallation), locked_state, NP),55)
 
 /obj/machinery/nanite_chamber/proc/complete_uninstallation(locked_state, datum/nanite_program/NP)
 	//TODO MACHINE DING

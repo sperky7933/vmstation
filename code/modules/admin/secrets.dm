@@ -288,7 +288,7 @@
 				return
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Monkeyize All Humans"))
 			for(var/mob/living/carbon/human/H in GLOB.carbon_list)
-				INVOKE_ASYNC(H, /mob/living/carbon.proc/monkeyize)
+				INVOKE_ASYNC(H, TYPE_PROC_REF(/mob/living/carbon, monkeyize))
 			ok = 1
 
 		if("allspecies")
@@ -713,9 +713,9 @@
 						var/ghostcandidates = list()
 						for (var/j in 1 to min(prefs["amount"]["value"], length(candidates)))
 							ghostcandidates += pick_n_take(candidates)
-							addtimer(CALLBACK(GLOBAL_PROC, .proc/doPortalSpawn, get_random_station_turf(), pathToSpawn, length(ghostcandidates), storm, ghostcandidates, outfit), i*prefs["delay"]["value"])
+							addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(doPortalSpawn), get_random_station_turf(), pathToSpawn, length(ghostcandidates), storm, ghostcandidates, outfit), i*prefs["delay"]["value"])
 					else if (prefs["playersonly"]["value"] != "Yes")
-						addtimer(CALLBACK(GLOBAL_PROC, .proc/doPortalSpawn, get_random_station_turf(), pathToSpawn, prefs["amount"]["value"], storm, null, outfit), i*prefs["delay"]["value"])
+						addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(doPortalSpawn), get_random_station_turf(), pathToSpawn, prefs["amount"]["value"], storm, null, outfit), i*prefs["delay"]["value"])
 
 	if(E)
 		E.processing = FALSE

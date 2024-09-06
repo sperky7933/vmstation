@@ -37,7 +37,7 @@
 /obj/machinery/mecha_part_fabricator/Initialize()
     var/datum/component/material_container/materials = AddComponent(/datum/component/material_container,
      list(/datum/material/iron, /datum/material/glass, /datum/material/silver, /datum/material/gold, /datum/material/diamond, /datum/material/plasma, /datum/material/uranium, /datum/material/bananium, /datum/material/titanium, /datum/material/bluespace), 0,
-        TRUE, /obj/item/stack, CALLBACK(src, .proc/is_insertion_ready), CALLBACK(src, .proc/AfterMaterialInsert))
+        TRUE, /obj/item/stack, CALLBACK(src, PROC_REF(is_insertion_ready)), CALLBACK(src, PROC_REF(AfterMaterialInsert)))
     materials.precise_insertion = TRUE
     stored_research = new
     return ..()
@@ -351,7 +351,7 @@
 		add_part_set_to_queue(href_list["partset_to_queue"])
 		return update_queue_on_page()
 	if(href_list["process_queue"])
-		INVOKE_ASYNC(src, .proc/do_process_queue)
+		INVOKE_ASYNC(src, PROC_REF(do_process_queue))
 	if(href_list["clear_temp"])
 		temp = null
 	if(href_list["screen"])

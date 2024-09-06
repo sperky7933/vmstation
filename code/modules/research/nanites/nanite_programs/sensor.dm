@@ -66,7 +66,7 @@
 /datum/nanite_program/sensor/repeat/trigger()
 	if(!..())
 		return
-	addtimer(CALLBACK(src, .proc/send_code), delay)
+	addtimer(CALLBACK(src, PROC_REF(send_code)), delay)
 
 /datum/nanite_program/sensor/relay_repeat
 	name = "Relay Signal Repeater"
@@ -112,7 +112,7 @@
 /datum/nanite_program/sensor/relay_repeat/trigger()
 	if(!..())
 		return
-	addtimer(CALLBACK(src, .proc/send_code), delay)
+	addtimer(CALLBACK(src, PROC_REF(send_code)), delay)
 
 /datum/nanite_program/sensor/relay_repeat/send_code()
 	if(activated && relay_channel)
@@ -347,10 +347,10 @@
 
 /datum/nanite_program/sensor/voice/on_mob_add()
 	. = ..()
-	RegisterSignal(host_mob, COMSIG_MOVABLE_HEAR, .proc/on_hear)
+	RegisterSignal(host_mob, COMSIG_MOVABLE_HEAR, PROC_REF(on_hear))
 
 /datum/nanite_program/sensor/voice/on_mob_remove()
-	UnregisterSignal(host_mob, COMSIG_MOVABLE_HEAR, .proc/on_hear)
+	UnregisterSignal(host_mob, COMSIG_MOVABLE_HEAR, PROC_REF(on_hear))
 
 /datum/nanite_program/sensor/voice/set_extra_setting(user, setting)
 	if(setting == "Sent Code")

@@ -12,7 +12,7 @@
 
 /obj/machinery/washing_machine/ComponentInitialize()
 	. = ..()
-	RegisterSignal(src, COMSIG_COMPONENT_CLEAN_ACT, .proc/clean_blood)
+	RegisterSignal(src, COMSIG_COMPONENT_CLEAN_ACT, PROC_REF(clean_blood))
 
 /obj/machinery/washing_machine/examine(mob/user)
 	. = ..()
@@ -35,7 +35,7 @@
 
 	busy = TRUE
 	update_icon()
-	addtimer(CALLBACK(src, .proc/wash_cycle), 200)
+	addtimer(CALLBACK(src, PROC_REF(wash_cycle)), 200)
 
 	START_PROCESSING(SSfastprocess, src)
 
