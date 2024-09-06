@@ -22,7 +22,7 @@
 #define SEVERE_POWER_PENALTY_THRESHOLD 7000   //Same as above, but causes more dangerous effects
 #define CRITICAL_POWER_PENALTY_THRESHOLD 9000 //Even more dangerous effects, threshold for tesla delamination
 #define HEAT_PENALTY_THRESHOLD 40             //Higher == Crystal safe operational temperature is higher.
-#define DAMAGE_HARDCAP 0.002
+#define DAMAGE_HARDCAP 0.004
 #define DAMAGE_INCREASE_MULTIPLIER 0.25
 
 
@@ -277,20 +277,15 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			SEND_SOUND(M, 'sound/magic/charge.ogg')
 			to_chat(M, "<span class='boldannounce'>You feel reality distort for a moment...</span>")
 			SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "delam", /datum/mood_event/delam)
-	if(combined_gas > MOLE_PENALTY_THRESHOLD)
-		investigate_log("has collapsed into a singularity.", INVESTIGATE_SUPERMATTER)
-		if(T)
-			var/obj/singularity/S = new(T)
-			S.energy = 800
-			S.consume(src)
-	else
-		investigate_log("has exploded.", INVESTIGATE_SUPERMATTER)
-		explosion(get_turf(T), explosion_power * max(gasmix_power_ratio, 0.205) * 0.5 , explosion_power * max(gasmix_power_ratio, 0.205) + 2, explosion_power * max(gasmix_power_ratio, 0.205) + 4 , explosion_power * max(gasmix_power_ratio, 0.205) + 6, 1, 1)
-		if(power > POWER_PENALTY_THRESHOLD)
-			investigate_log("has spawned additional energy balls.", INVESTIGATE_SUPERMATTER)
-			var/obj/singularity/energy_ball/E = new(T)
-			E.energy = power
-		qdel(src)
+	investigate_log("has collapsed into a singularity.", INVESTIGATE_SUPERMATTER)
+	if(T)
+		var/obj/singularity/S = new(T)
+		S.energy = 800
+		S.consume(src)
+	if(power > POWER_PENALTY_THRESHOLD)
+		investigate_log("has spawned additional energy balls.", INVESTIGATE_SUPERMATTER)
+		var/obj/singularity/energy_ball/E = new(T)
+		E.energy = power
 
 /obj/machinery/power/supermatter_crystal/process_atmos()
 	var/turf/T = loc
