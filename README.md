@@ -2,8 +2,7 @@
 
 **Website:** https://boards.4channel.org/vm/ss13
 **Code:** https://github.com/sperky7933/vmstation
-**Wiki** https://web.archive.org/web/20190910043626/https://tgstation13.org/wiki/Main_Page
-**IRC:** TODO
+**Wiki** https://vmstation.net/index.php?title=Main_Page
 
  
 ## DOWNLOADING

@@ -23,7 +23,7 @@ SERVERNAME vmstation
 #STATIONNAME Space Station 13
 
 ## Put on byond hub: Uncomment this to put your server on the byond hub.
-HUB
+#HUB
 
 ## Lobby time: This is the amount of time between rounds that players have to setup their characters and be ready.
 LOBBY_COUNTDOWN 180
@@ -233,7 +233,7 @@ CHECK_RANDOMIZER
 FORUMURL https://boards.4channel.org/vm/ss13
 
 ## Wiki address
-WIKIURL https://web.archive.org/web/20190910043626/https://tgstation13.org/wiki/Main_Page
+WIKIURL https://vmstation.net/index.php?title=Main_Page
 
 ## Github address
 GITHUBURL https://github.com/sperky7933/vmstation
