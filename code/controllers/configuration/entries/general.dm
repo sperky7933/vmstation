@@ -199,13 +199,13 @@
 /datum/config_entry/string/banappeals
 
 /datum/config_entry/string/wikiurl
-	config_entry_value = "http://www.tgstation13.org/wiki"
+	config_entry_value = "http://www.vmstation.net/wiki"
 
 /datum/config_entry/string/forumurl
-	config_entry_value = "http://tgstation13.org/phpBB/index.php"
+	config_entry_value = "https://4chan.org/vm/ss13"
 
 /datum/config_entry/string/githuburl
-	config_entry_value = "https://www.github.com/tgstation/-tg-station"
+	config_entry_value = "https://github.com/sperky7933/vmstation"
 
 /datum/config_entry/string/roundstatsurl
 

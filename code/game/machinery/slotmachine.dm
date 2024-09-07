@@ -125,9 +125,10 @@
 	else
 		return ..()
 
-/obj/machinery/computer/slot_machine/emag_act()
+/obj/machinery/computer/slot_machine/emag_act(mob/user)
 	if(obj_flags & EMAGGED)
 		return
+	to_chat(user, "<span class='warning'>You fry \the [src]'s probability system.</span>")
 	obj_flags |= EMAGGED
 	var/datum/effect_system/spark_spread/spark_system = new /datum/effect_system/spark_spread()
 	spark_system.set_up(4, 0, src.loc)

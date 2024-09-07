@@ -2,15 +2,15 @@
 
 **Website:** https://boards.4channel.org/vm/ss13
 **Code:** https://github.com/sperky7933/vmstation
-**Wiki** https://vmstation.net/index.php?title=Main_Page
+**Wiki** https://vmstation.net/wiki
 
  
 ## DOWNLOADING
 
-There are a number of ways to download the source code. Some are described here, an alternative all-inclusive guide is also located at https://www.tgstation13.org/wiki/Downloading_the_source_code
+There are a number of ways to download the source code. Some are described here, an alternative all-inclusive guide is also located at https://www.vmstation.net/wiki/Downloading_the_source_code
 
 Option 1:
-Follow this: https://www.tgstation13.org/wiki/Setting_up_git
+Follow this: https://vmstation.net/index.php?title=Setting_up_git
 
 Option 2: Download the source code as a zip by clicking the ZIP button in the
 code tab of https://github.com/sperky7933/vmstation
@@ -95,11 +95,11 @@ https://github.com/tgstation/tgstation-server
 
 /vm/station currently comes equipped with five maps.
 
-* [BoxStation (default)](https://tgstation13.org/wiki/Boxstation)
-* [MetaStation](https://tgstation13.org/wiki/MetaStation)
-* [DeltaStation](https://tgstation13.org/wiki/DeltaStation)
-* [PubbyStation](https://tgstation13.org/wiki/PubbyStation)
-* [DonutStation](https://tgstation13.org/wiki/Donutstation)
+* [BoxStation (default)](https://vmstation.net/wiki/Boxstation)
+* [MetaStation](https://vmstation.net/wiki/MetaStation)
+* [DeltaStation](https://vmstation.net/wiki/DeltaStation)
+* [PubbyStation](https://vmstation.net/wiki/PubbyStation)
+* [DonutStation](https://vmstation.net/wiki/Donutstation)
 
 
 All maps have their own code file that is in the base of the _maps directory. Maps are loaded dynamically when the game starts. Follow this guideline when adding your own map, to your fork, for easy compatibility.
@@ -108,7 +108,7 @@ The map that will be loaded for the upcoming round is determined by reading data
 
 If you are hosting a server, and want randomly picked maps to be played each round, you can enable map rotation in [config.txt](config/config.txt) and then set the maps to be picked in the [maps.txt](config/maps.txt) file.
 
-Anytime you want to make changes to a map it's imperative you use the [Map Merging tools](https://tgstation13.org/wiki/Map_Merger)
+Anytime you want to make changes to a map it's imperative you use the [Map Merging tools](https://vmstation.net/wiki/Map_Merger)
 
 ## AWAY MISSIONS
 
@@ -120,7 +120,7 @@ To enable an away mission open `config/awaymissionconfig.txt` and uncomment one 
 
 ## SQL SETUP
 
-The SQL backend requires a Mariadb server running 10.2 or later. Mysql is not supported but Mariadb is a drop in replacement for mysql. SQL is required for the library, stats tracking, admin notes, and job-only bans, among other features, mostly related to server administration. Your server details go in /config/dbconfig.txt, and the SQL schema is in /SQL/tgstation_schema.sql and /SQL/tgstation_schema_prefix.sql depending on if you want table prefixes.  More detailed setup instructions are located here: https://www.tgstation13.org/wiki/Downloading_the_source_code#Setting_up_the_database
+The SQL backend requires a Mariadb server running 10.2 or later. Mysql is not supported but Mariadb is a drop in replacement for mysql. SQL is required for the library, stats tracking, admin notes, and job-only bans, among other features, mostly related to server administration. Your server details go in /config/dbconfig.txt, and the SQL schema is in /SQL/tgstation_schema.sql and /SQL/tgstation_schema_prefix.sql depending on if you want table prefixes.  More detailed setup instructions are located here: https://www.vmstation.net/wiki/Downloading_the_source_code#Setting_up_the_database
 
 If you are hosting a testing server on windows you can use a standalone version of MariaDB pre load with a blank (but initialized) tgdb database. Find them here: https://tgstation13.download/database/ Just unzip and run for a working (but insecure) database server. Includes a zipped copy of the data folder for easy resetting back to square one.
 

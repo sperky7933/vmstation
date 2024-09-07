@@ -248,27 +248,28 @@
 	if(wikiurl)
 		dat = {"
 
-			<html><head>
-			<style>
-				iframe {
-					display: none;
-				}
-			</style>
-			</head>
-			<body>
-			<script type="text/javascript">
-				function pageloaded(myframe) {
-					document.getElementById("loading").style.display = "none";
-					myframe.style.display = "inline";
-    			}
-			</script>
-			<p id='loading'>You start skimming through the manual...</p>
-			<iframe width='100%' height='97%' onload="pageloaded(this)" src="[wikiurl]/[page_link]?printable=yes&remove_links=1" frameborder="0" id="main_frame"></iframe>
-			</body>
+		<html><head>
+		<style>
+			/* Hide unnecessary elements for a cleaner look */
+			#footer, #toc, .mw-editsection, .printfooter, .catlinks, .page-tools {
+				display: none !important;
+			}
+		</style>
+		</head>
+		<body>
+		<script type=\"text/javascript\">
+			function pageloaded(myframe) {
+				document.getElementById(\"loading\").style.display = \"none\";
+				myframe.style.display = \"inline\";
+			}
+		</script>
+		<p id='loading'>You start skimming through the manual...</p>
+		<iframe width='100%' height='97%' onload=\"pageloaded(this)\" src=\"[wikiurl]/[page_link]\" frameborder=\"0\" id=\"main_frame\"></iframe>
+		</body>
 
-			</html>
+		</html>
 
-			"}
+		"}
 
 /obj/item/book/manual/wiki/chemistry
 	name = "Chemistry Textbook"

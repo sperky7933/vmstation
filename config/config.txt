@@ -233,7 +233,7 @@ CHECK_RANDOMIZER
 FORUMURL https://boards.4channel.org/vm/ss13
 
 ## Wiki address
-WIKIURL https://vmstation.net/index.php?title=Main_Page
+WIKIURL https://vmstation.net/wiki
 
 ## Github address
 GITHUBURL https://github.com/sperky7933/vmstation
