@@ -23,8 +23,8 @@
 	var/atom/target = parent
 	while(ismovableatom(target))
 		RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(move_react))
-    RegisterSignal(parent, COMSIG_MOVABLE_UPDATE_GLIDE_SIZE, PROC_REF(orbiter_glide_size_update))
-		target = target.loc
+	RegisterSignal(parent, COMSIG_MOVABLE_UPDATE_GLIDE_SIZE, PROC_REF(orbiter_glide_size_update))
+	target = target.loc
 
 /datum/component/orbiter/UnregisterFromParent()
 	var/atom/target = parent
@@ -101,7 +101,7 @@
 	if(ismob(orbiter))
 		var/mob/M = orbiter
 		M.updating_glide_size = TRUE
-		M.glide_size = 8	
+		M.glide_size = 8
 	if(!refreshing && !length(orbiters) && !QDELING(src))
 		qdel(src)
 
@@ -145,7 +145,7 @@
 	if(orbiter.loc == get_turf(parent))
 		return
 	end_orbit(orbiter)
-	
+
 /datum/component/orbiter/proc/orbiter_glide_size_update(datum/source, target)
 	for(var/orbiter in orbiters)
 		var/atom/movable/AM = orbiter

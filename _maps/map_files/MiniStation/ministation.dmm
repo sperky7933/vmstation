@@ -690,7 +690,7 @@
 "nz" = (/obj/machinery/atmospherics/components/unary/vent_scrubber/on{dir = 1},/obj/structure/closet/crate/bin,/obj/effect/spawner/lootdrop/trash,/obj/effect/spawner/lootdrop/trash,/obj/effect/spawner/lootdrop/trash,/obj/effect/spawner/lootdrop/trash,/obj/effect/spawner/lootdrop/trash,/turf/open/floor/plasteel/grimy,/area/chapel/main)
 "nA" = (/obj/machinery/suit_storage_unit/rd,/turf/open/floor/plasteel,/area/bridge)
 "nB" = (/turf/open/floor/plasteel/white,/area/medical/medbay)
-"nC" = (/obj/machinery/stasis,/turf/open/floor/plasteel/white,/area/medical/medbay)
+"nC" = (/obj/machinery/sleeper,/turf/open/floor/plasteel/white,/area/medical/medbay)
 "nD" = (/obj/machinery/computer/med_data,/turf/open/floor/plasteel/white,/area/medical/medbay)
 "nE" = (/obj/structure/table,/obj/item/clothing/suit/straight_jacket,/obj/item/clothing/mask/muzzle,/turf/open/floor/plasteel/white,/area/medical/medbay)
 "nF" = (/obj/structure/table,/obj/item/radio/intercom{name = "Station Intercom (General)"; pixel_y = 25},/turf/open/floor/plasteel/white,/area/medical/medbay)
