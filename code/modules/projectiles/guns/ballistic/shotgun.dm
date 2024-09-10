@@ -284,8 +284,12 @@
 /obj/item/gun/ballistic/doublebarrel/improvisedshotpistol/shoot_live_shot(mob/living/user as mob|obj)
 	..()
 	to_chat(user, "<span class='italics'>The [src] falls apart!</span>")
-	spawn(0)
-		/obj/item/assembly/igniter()
-		/obj/item/grenade/chem_grenade()
+	
+	new /obj/item/assembly/igniter(loc)
+	new /obj/item/grenade/chem_grenade(loc)
+
 	qdel(src) //Make it break on firing.
+
+	user.apply_damage(rand(0, 6), BURN)
+
 	//also burn the player's hand and tell them so.
