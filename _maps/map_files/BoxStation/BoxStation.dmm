@@ -14951,7 +14951,6 @@
 /area/hallway/primary/port)
 "aLI" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_x = -1;
 	pixel_x = 5;
 	pixel_y = 30
 	},
@@ -21027,8 +21026,6 @@
 	},
 /obj/structure/sign/directions/evac{
 	dir = 4;
-	pixel_x = 0;
-	pixel_y = 0;
 	pixel_x = 32;
 	pixel_y = 28
 	},
@@ -23752,7 +23749,6 @@
 /area/quartermaster/storage)
 "bjq" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_x = -1;
 	pixel_x = 5;
 	pixel_y = 30
 	},
@@ -30283,14 +30279,12 @@
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
 "bAq" = (
-/obj/machinery/sleeper{
-	dir = 8
-	},
 /obj/machinery/camera{
 	c_tag = "Medbay Treatment Center";
 	dir = 8;
 	network = list("ss13","medbay")
 	},
+/obj/machinery/stasis,
 /turf/open/floor/plasteel,
 /area/medical/sleeper)
 "bAr" = (
@@ -45405,7 +45399,6 @@
 	pixel_y = 2
 	},
 /obj/structure/extinguisher_cabinet{
-	pixel_x = -1;
 	pixel_x = 5;
 	pixel_y = 30
 	},

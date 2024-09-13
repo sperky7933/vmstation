@@ -8,6 +8,7 @@
 	layer = BELOW_OBJ_LAYER
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "mixer0"
+	var/nopower_state = "mixer0_nopower"
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 20
 	resistance_flags = FIRE_PROOF | ACID_PROOF
@@ -70,17 +71,31 @@
 	cut_overlays()
 	if (stat & BROKEN)
 		add_overlay("waitlight")
+	
+	// todo: use overlays instead of this yanderedev tier code
 	if(beaker)
-		icon_state = "mixer1"
+		if (powered() && !panel_open)
+			icon_state = "mixer1"
+		else
+			icon_state = "mixer1_nopower"
 	else
-		icon_state = "mixer0"
+		if (powered() && !panel_open)
+			icon_state = "mixer0"
+		else
+			icon_state = "mixer0_nopower"
 
 /obj/machinery/chem_master/blob_act(obj/structure/blob/B)
 	if (prob(50))
 		qdel(src)
 
+/obj/machinery/chem_master/power_change()
+	..()
+	update_icon()
+
 /obj/machinery/chem_master/attackby(obj/item/I, mob/user, params)
-	if(default_deconstruction_screwdriver(user, "mixer0_nopower", "mixer0", I))
+	
+	if(default_deconstruction_screwdriver(user, icon_state, icon_state, I))
+		update_icon()
 		return
 
 	else if(default_deconstruction_crowbar(I))
@@ -112,6 +127,7 @@
 		updateUsrDialog()
 	else
 		return ..()
+		
 
 /obj/machinery/chem_master/AltClick(mob/living/user)
 	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
