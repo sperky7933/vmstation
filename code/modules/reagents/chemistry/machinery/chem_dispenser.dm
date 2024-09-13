@@ -119,7 +119,7 @@
 /obj/machinery/chem_dispenser/proc/display_beaker()
 	var/mutable_appearance/b_o = beaker_overlay || mutable_appearance(icon, "disp_beaker")
 	b_o.pixel_y = -4
-	b_o.pixel_x = -7
+	b_o.pixel_x = -8
 	return b_o
 
 /obj/machinery/chem_dispenser/proc/work_animation()
@@ -418,17 +418,18 @@
 	var/mutable_appearance/b_o = beaker_overlay || mutable_appearance(icon, "disp_beaker")
 	switch(dir)
 		if(NORTH)
-			b_o.pixel_y = 7
+			b_o.pixel_y = 4
 			b_o.pixel_x = rand(-9, 9)
 		if(EAST)
 			b_o.pixel_x = 4
-			b_o.pixel_y = rand(-5, 7)
+			b_o.pixel_y = rand(-5, 5)
 		if(WEST)
-			b_o.pixel_x = -5
-			b_o.pixel_y = rand(-5, 7)
+			b_o.pixel_x = -4
+			b_o.pixel_y = rand(-5, 5)
 		else//SOUTH
-			b_o.pixel_y = -7
+			b_o.pixel_y = -8
 			b_o.pixel_x = rand(-9, 9)
+
 	return b_o
 
 /obj/machinery/chem_dispenser/drinks
