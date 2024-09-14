@@ -19815,7 +19815,6 @@
 /area/hydroponics)
 "aYS" = (
 /obj/structure/closet,
-/obj/item/clothing/under/suit/black/skirt,
 /obj/item/clothing/under/suit/black_really,
 /obj/structure/window{
 	dir = 1

@@ -12284,7 +12284,6 @@
 /area/crew_quarters/dorms)
 "aAe" = (
 /obj/structure/table,
-/obj/item/clothing/under/suit/black/skirt,
 /obj/item/clothing/under/suit/black_really,
 /obj/machinery/light/small{
 	dir = 1
