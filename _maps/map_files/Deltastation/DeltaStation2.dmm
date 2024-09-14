@@ -52699,6 +52699,7 @@
 	pixel_x = -32
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/item/card/id/captains_spare,
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/captain)
 "bUM" = (

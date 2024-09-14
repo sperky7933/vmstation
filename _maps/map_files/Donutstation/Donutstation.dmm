@@ -12591,6 +12591,7 @@
 /obj/machinery/computer/card{
 	dir = 8
 	},
+/obj/item/card/id/captains_spare,
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain)
 "aFw" = (

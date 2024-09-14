@@ -31796,6 +31796,7 @@
 	name = "Captain RC";
 	pixel_x = 32
 	},
+/obj/item/card/id/captains_spare,
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain/private)
 "bra" = (
