@@ -10,7 +10,7 @@
 	name = "security closet"
 	desc = "A storage unit, good for holding weapons and \"neutralized\" fugitives."
 	icon_state = "sec"
-	icon_door = "sec"
+	icon_door = "sec_generic"
 
 /obj/structure/closet/generic/sci
 	name = "research closet"
