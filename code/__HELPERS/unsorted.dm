@@ -204,9 +204,10 @@ Turf and target are separate in case you want to teleport some distance from a t
 	var/safety = 0
 
 	var/banned = C ? is_banned_from(C.ckey, "Appearance") : null
-
+	var/frn = CONFIG_GET(flag/force_random_names)
+	var/frnap = CONFIG_GET(flag/force_random_names_and_appearances)
 	while(loop && safety < 5)
-		if(C && C.prefs.custom_names[role] && !safety && !banned)
+		if(C && C.prefs.custom_names[role] && !safety && !banned && !frn && !frnap)
 			newname = C.prefs.custom_names[role]
 		else
 			switch(role)
