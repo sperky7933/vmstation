@@ -3,7 +3,6 @@
 	desc = "(icon, name, concept, and any kind of consistency or sense is currently pending)"
 	icon = 'goon/icons/obj/aibots.dmi'
 	icon_state = "chefbot-idle"
-	//layer = 5.0 //TODO LAYER
 	density = FALSE
 	anchored = FALSE
 	on = 1 // ACTION
@@ -26,7 +25,7 @@
 /mob/living/simple_animal/bot/chefbot/Initialize()
 	if (raging)
 		return
-	if(prob(60) && src.on == 1)
+	if(/*prob(60) && */src.on == 1)
 		spawn(0)
 			do_step()
 			if(prob(src.emagged * 20))
@@ -70,7 +69,7 @@
 			icon_state = "chefbot-mad"
 			for (var/mob/living/carbon/human/M in view(7, src))
 				if (M.mind)
-					if (M.mind.assigned_role == "Chef")
+					if (M.mind.assigned_role == "Cook")
 						thechef = M
 						is_thechef_the_chef = 1
 						break
