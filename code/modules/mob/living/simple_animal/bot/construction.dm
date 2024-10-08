@@ -491,3 +491,44 @@
 				F.name = created_name
 				qdel(I)
 				qdel(src)
+
+//Chefbot Assembly
+/obj/item/bot_assembly/chefbot
+	icon = 'goon/icons/obj/aibots.dmi'
+	name = "incomplete chefbot assembly"
+	desc = "A microwave with arms attached to it."
+	icon_state = "chefbot_arm"
+	item_state = "chefbot_1"
+	created_name = "chefbot"
+
+/obj/item/bot_assembly/chefbot/attackby(obj/item/I, mob/user, params)
+	..()
+	switch(build_step)
+		if(ASSEMBLY_FIRST_STEP)
+			if(istype(I, /obj/item/clothing/head/chefhat))
+				if(!user.temporarilyRemoveItemFromInventory(I))
+					return
+				to_chat(user,"<span class='notice'>You add the [I] to [src]!</span>")
+				icon_state = "chefbot0"
+				desc = "A microwave with arms and a chef's hat on it."
+				qdel(I)
+				build_step++
+
+		if(ASSEMBLY_SECOND_STEP)
+			if(istype(I, /obj/item/bikehorn))
+				if(!user.temporarilyRemoveItemFromInventory(I))
+					return
+				to_chat(user, "<span class='notice'>You add the [I] to [src]!</span>")
+				desc = "A microwave with arms and a chef's hat on it."
+				qdel(I)
+				build_step++
+
+		if(ASSEMBLY_THIRD_STEP)
+			if(isprox(I))
+				if(!can_finish_build(I, user))
+					return
+				to_chat(user, "<span class='notice'>You add the [I] to [src]! Beep Boop!</span>")
+				var/mob/living/simple_animal/bot/chefbot/F = new(drop_location())
+				F.name = created_name
+				qdel(I)
+				qdel(src)
